@@ -25,17 +25,17 @@ This roadmap is the executable to-do list for the course project specified in [s
 
 ## Acceptance Snapshot
 
-- [ ] M Generator creates an undirected simple graph with about 100 fictional users.
-- [ ] M Structural signature is `(G.degree(), nx.triangles())`.
-- [ ] M Unique-signature fraction is computed before and after relabelling.
-- [ ] M Anonymisation uses a seeded random bijection and `nx.relabel_nodes(..., copy=True)`.
-- [ ] M Relabelling invariance is verified by integer count, sorted signature multiset, per-node mapping and mapped edge set.
-- [ ] M A fresh copy is rewired with exactly the SRS rounding rule for 10% of edges.
-- [ ] M Perturbation preserves edge count, removes no loops, uses original-graph non-edges and changes exactly `2k` edge-set entries.
-- [ ] M Uniqueness, average clustering and top-five degree ranking are compared.
-- [ ] M Machine-readable and human-readable reports are generated.
+- [x] M Generator creates an undirected simple graph with about 100 fictional users.
+- [x] M Structural signature is `(G.degree(), nx.triangles())`.
+- [x] M Unique-signature fraction is computed before and after relabelling.
+- [x] M Anonymisation uses a seeded random bijection and `nx.relabel_nodes(..., copy=True)`.
+- [x] M Relabelling invariance is verified by integer count, sorted signature multiset, per-node mapping and mapped edge set.
+- [x] M A fresh copy is rewired with exactly the SRS rounding rule for 10% of edges.
+- [x] M Perturbation preserves edge count, removes no loops, uses original-graph non-edges and changes exactly `2k` edge-set entries.
+- [x] M Uniqueness, average clustering and top-five degree ranking are compared.
+- [~] M Machine-readable results and comparison tables are generated; final report artifact is still pending.
 - [ ] M The report explicitly says the finding indicates a potential concern, not established identification.
-- [ ] M The shareable bundle contains no names or private mapping.
+- [x] M Generated shareable results contain no names or private mapping.
 
 # Phase P0 - Setup and Scoping
 
@@ -61,7 +61,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 
 - [~] `M` Create the repository layout from SRS Section 10.3.
 - [x] `M` Add `README.md`, `srs.md`, `requirements.txt`, `Roadmap.md`.
-- [~] `M` Add `src/` modules: `config.py`, `names.py`, `generate.py`, `signature.py`, `metrics.py`, `anonymize.py`, `verify.py`, `perturb.py`, `compare.py`, `robust.py`, `report.py`, `main.py`.
+- [x] `M` Add `src/` modules: `config.py`, `names.py`, `generate.py`, `signature.py`, `metrics.py`, `anonymize.py`, `verify.py`, `perturb.py`, `compare.py`, `robust.py`, `report.py`, `main.py`.
 - [~] `M` Add focused test modules under `tests/`.
 - [x] `M` Create shareable `results/` and private `private/` directories.
 - [x] `M` Create `report/` for report and optional slides.
@@ -153,7 +153,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `M` Assert `sum(degrees) == 2 * edge_count`.
 - [x] `M` Assert `sum(triangle_counts) % 3 == 0`.
 - [x] `M` Assert `0 <= t(v) <= d(v) * (d(v)-1)/2` for every node.
-- [~] `M` Reuse the same signature implementation for named, anonymous and perturbed graphs as later phases are implemented.
+- [x] `M` Reuse the same signature implementation for named, anonymous and perturbed graphs.
 - [ ] `S` Explain that this two-number signature is a weak fingerprint that can still be distinctive.
 
 # Phase P3 - Uniqueness Measurement
@@ -200,106 +200,106 @@ This roadmap is the executable to-do list for the course project specified in [s
 
 ## P6.1 Fresh Copy
 
-- [ ] `M` Create `H = G_anon.copy()`.
-- [ ] `M` Fingerprint `G_anon` sorted edge set before perturbation.
-- [ ] `M` Verify the fingerprint is unchanged after perturbation.
+- [x] `M` Create `H = G_anon.copy()`.
+- [x] `M` Fingerprint `G_anon` sorted edge set before perturbation.
+- [x] `M` Verify the fingerprint is unchanged after perturbation.
 
 ## P6.2 Edge Replacement Count
 
-- [ ] `M` Calculate `m = G_anon.number_of_edges()`.
-- [ ] `M` Calculate `k = int(0.10 * m + 0.5)`.
-- [ ] `M` Log `m`, `k` and the rounding rule.
-- [ ] `M` Do not use Python banker's rounding.
-- [ ] `M` Test `m=291 -> k=29`.
-- [ ] `M` Test `m=295 -> k=30`.
+- [x] `M` Calculate `m = G_anon.number_of_edges()`.
+- [x] `M` Calculate `k = int(0.10 * m + 0.5)`.
+- [x] `M` Log `m`, `k` and the rounding rule.
+- [x] `M` Do not use Python banker's rounding.
+- [x] `M` Test `m=291 -> k=29`.
+- [x] `M` Test `m=295 -> k=30`.
 
 ## P6.3 Removal
 
-- [ ] `M` Normalize all existing edges to sorted undirected tuples.
-- [ ] `M` Sort edge tuples for deterministic iteration.
-- [ ] `M` Sample exactly `k` existing edges without replacement.
-- [ ] `M` Remove them from `H` only.
+- [x] `M` Normalize all existing edges to sorted undirected tuples.
+- [x] `M` Sort edge tuples for deterministic iteration.
+- [x] `M` Sample exactly `k` existing edges without replacement.
+- [x] `M` Remove them from `H` only.
 
 ## P6.4 Addition
 
-- [ ] `M` Evaluate `nx.non_edges(G_anon)` on the original graph.
-- [ ] `M` Normalize candidates to sorted tuple pairs and sort them.
-- [ ] `M` Exclude every original edge and every self-loop.
-- [ ] `M` Exclude removed edges from re-addition.
-- [ ] `M` Sample exactly `k` candidates without replacement.
-- [ ] `M` Remove first, then add all selected edges.
+- [x] `M` Evaluate `nx.non_edges(G_anon)` on the original graph.
+- [x] `M` Normalize candidates to sorted tuple pairs and sort them.
+- [x] `M` Exclude every original edge and every self-loop.
+- [x] `M` Exclude removed edges from re-addition.
+- [x] `M` Sample exactly `k` candidates without replacement.
+- [x] `M` Remove first, then add all selected edges.
 
 ## P6.5 Postconditions
 
-- [ ] `M` Assert edge count is preserved.
-- [ ] `M` Assert no self-loops exist.
-- [ ] `M` Assert no duplicate edges exist.
-- [ ] `M` Assert every added edge was absent in `G_anon`.
-- [ ] `M` Assert removed and added sets are disjoint.
-- [ ] `M` Assert symmetric difference is exactly `2k`.
-- [ ] `M` Assert node set is unchanged.
-- [ ] `M` Assert `G_anon` edge set is unchanged.
-- [ ] `M` Persist normalized removed and added edge lists.
-- [ ] `M` Document that degree sequence may change, triangles may change and connectedness may change.
+- [x] `M` Assert edge count is preserved.
+- [x] `M` Assert no self-loops exist.
+- [x] `M` Assert no duplicate edges exist.
+- [x] `M` Assert every added edge was absent in `G_anon`.
+- [x] `M` Assert removed and added sets are disjoint.
+- [x] `M` Assert symmetric difference is exactly `2k`.
+- [x] `M` Assert node set is unchanged.
+- [x] `M` Assert `G_anon` edge set is unchanged.
+- [x] `M` Persist normalized removed and added edge lists.
+- [x] `M` Document that degree sequence may change, triangles may change and connectedness may change.
 
 # Phase P7 - Before/After Comparison
 
 ## P7.1 Signature Uniqueness
 
-- [ ] `M` Calculate named/anonymous unique count and fraction before perturbation.
-- [ ] `M` Calculate perturbed unique count and fraction.
-- [ ] `M` Report absolute difference in percentage points.
-- [ ] `M` Use exact integer comparison for unique-count invariance.
+- [x] `M` Calculate named/anonymous unique count and fraction before perturbation.
+- [x] `M` Calculate perturbed unique count and fraction.
+- [x] `M` Report absolute difference in percentage points.
+- [x] `M` Use exact integer comparison for unique-count invariance.
 
 ## P7.2 Average Clustering
 
-- [ ] `M` Compute average clustering with `nx.average_clustering(G, count_zeros=True)`.
-- [ ] `M` Report before value, after value, absolute change and relative change.
-- [ ] `M` Label this as the mean of local clustering coefficients, not transitivity.
+- [x] `M` Compute average clustering with `nx.average_clustering(G, count_zeros=True)`.
+- [x] `M` Report before value, after value, absolute change and relative change.
+- [x] `M` Label this as the mean of local clustering coefficients, not transitivity.
 
 ## P7.3 Top-Five Degree Ranking
 
-- [ ] `M` Rank nodes by `(-degree, identifier)`.
-- [ ] `M` Report five `(id, degree)` pairs before and after.
-- [ ] `M` Report overlap count from 0 to 5.
-- [ ] `M` Report whether ranking order is identical.
-- [ ] `M` Report rank movement for every ranked node.
-- [ ] `M` Detect and report whether the rank-5 position is tied with rank 6.
-- [ ] `M` Avoid relabelling tie artefacts in ranking comparisons.
+- [x] `M` Rank nodes by `(-degree, identifier)`.
+- [x] `M` Report five `(id, degree)` pairs before and after.
+- [x] `M` Report overlap count from 0 to 5.
+- [x] `M` Report whether ranking order is identical.
+- [x] `M` Report rank movement for every node.
+- [x] `M` Detect and report whether the rank-5 position is tied with rank 6.
+- [x] `M` Avoid relabelling tie artefacts in ranking comparisons.
 
 ## P7.4 Supplementary Indicators
 
-- [ ] `S` Record number of distinct signatures before and after.
-- [ ] `S` Record largest signature class before and after.
-- [ ] `S` Record class-size histogram before and after.
-- [ ] `S` Record fraction of originally unique nodes whose signature remains unchanged.
-- [ ] `S` Record fraction of originally unique nodes that remain unique.
-- [ ] `S` Record number of nodes whose signature changed.
-- [ ] `S` Record transitivity before and after.
-- [ ] `S` Record connected-component count before and after.
-- [ ] `S` Summarize degree-sequence differences.
-- [ ] `S` Record isolated nodes before and after perturbation.
+- [x] `S` Record number of distinct signatures before and after.
+- [x] `S` Record largest signature class before and after.
+- [x] `S` Record class-size histogram before and after.
+- [x] `S` Record fraction of originally unique nodes whose signature remains unchanged.
+- [x] `S` Record fraction of originally unique nodes that remain unique.
+- [x] `S` Record number of nodes whose signature changed.
+- [x] `S` Record transitivity before and after.
+- [x] `S` Record connected-component count before and after.
+- [x] `S` Summarize degree-sequence differences.
+- [x] `S` Record isolated nodes before and after perturbation.
 
 ## P7.5 Outputs
 
-- [ ] `M` Create one comparison table with Before, After and Change columns.
-- [ ] `S` Create a class-size histogram figure.
-- [ ] `S` Create a degree-versus-triangles scatter figure.
-- [ ] `S` Create a top-five degree bar/line chart.
-- [ ] `S` Save figures as PNG at 150 dpi or higher.
+- [x] `M` Create one comparison table with Before, After and Change columns.
+- [x] `S` Create a class-size histogram figure.
+- [x] `S` Create a degree-versus-triangles scatter figure.
+- [x] `S` Create a top-five degree bar/line chart.
+- [x] `S` Save figures as PNG at 150 dpi or higher.
 
 # Phase P8 - Robustness and Sensitivity
 
 ## P8.1 Repeated Perturbation
 
-- [ ] `S` Keep the base graph fixed.
-- [ ] `S` Repeat P6/P7 for 200 perturbation seeds by default.
-- [ ] `S` Use `Random(master_seed + 1000 + i)` or an equally documented derived sequence.
-- [ ] `S` Summarize unique fraction after rewiring.
-- [ ] `S` Summarize average clustering after rewiring.
-- [ ] `S` Summarize top-five overlap.
-- [ ] `S` Report mean, standard deviation, minimum, 5th percentile, 95th percentile and maximum.
-- [ ] `S` Word conclusions according to the observed spread.
+- [x] `S` Keep the base graph fixed.
+- [x] `S` Repeat P6/P7 for 200 perturbation seeds by default.
+- [x] `S` Use `Random(master_seed + 1000 + i)` or an equally documented derived sequence.
+- [x] `S` Summarize unique fraction after rewiring.
+- [x] `S` Summarize average clustering after rewiring.
+- [x] `S` Summarize top-five overlap.
+- [x] `S` Report mean, standard deviation, minimum, 5th percentile, 95th percentile and maximum.
+- [x] `S` Word conclusions according to the observed spread in `results/robust.md`, limiting interpretation to perturbation variation on the fixed base graph.
 
 ## P8.2 Repeated Base Graphs
 
@@ -330,77 +330,77 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [ ] `O` Test `f=0.05`.
 - [ ] `O` Test `f=0.10`.
 - [ ] `O` Test `f=0.20`.
-- [ ] `M` Verify `f=0` exactly reproduces the baseline graph and metrics.
+- [x] `M` Verify `f=0` exactly reproduces the baseline graph and metrics.
 
 # Phase P9 - Interpretation and Privacy Discussion
 
-- [ ] `M` Report the actual measured values; do not turn expectations into findings.
-- [ ] `M` State relabelling did not change the unique fraction.
-- [ ] `M` State exactly how uniqueness, clustering and top-five ranking changed after rewiring.
-- [ ] `M` Explain that naïve anonymisation hides labels, not topology.
-- [ ] `M` Explain that rewiring makes exact auxiliary signatures less reliable.
-- [ ] `M` Explain that perturbation is not a formal privacy guarantee.
-- [ ] `M` Explain the utility cost: clustering/ranking drift and possible utility loss.
-- [ ] `M` Include the mandatory potential-versus-established sentence.
-- [ ] `M` Include all seven mandatory reasons why distinctive signatures do not establish identification.
-- [ ] `S` Discuss k-degree anonymity as a mitigation pointer only.
-- [ ] `S` Discuss k-neighbourhood anonymity as a mitigation pointer only.
-- [ ] `S` Discuss formal edge-perturbation analysis as a mitigation pointer only.
-- [ ] `S` Discuss differential privacy for graph statistics as a mitigation pointer only.
-- [ ] `S` Discuss releasing aggregates instead of graphs.
-- [ ] `M` List limitations: synthetic data, one generator, two-number signature, N around 100, random rewiring and no attacker model.
-- [ ] `M` Never claim actual identification in the report.
+- [x] `M` Report the actual measured values; do not turn expectations into findings.
+- [x] `M` State relabelling did not change the unique fraction.
+- [x] `M` State exactly how uniqueness, clustering and top-five ranking changed after rewiring.
+- [x] `M` Explain that naïve anonymisation hides labels, not topology.
+- [x] `M` Explain that rewiring makes exact auxiliary signatures less reliable.
+- [x] `M` Explain that perturbation is not a formal privacy guarantee.
+- [x] `M` Explain the utility cost: clustering/ranking drift and possible utility loss.
+- [x] `M` Include the mandatory potential-versus-established sentence.
+- [x] `M` Include all seven mandatory reasons why distinctive signatures do not establish identification.
+- [x] `S` Discuss k-degree anonymity as a mitigation pointer only.
+- [x] `S` Discuss k-neighbourhood anonymity as a mitigation pointer only.
+- [x] `S` Discuss formal edge-perturbation analysis as a mitigation pointer only.
+- [x] `S` Discuss differential privacy for graph statistics as a mitigation pointer only.
+- [x] `S` Discuss releasing aggregates instead of graphs.
+- [x] `M` List limitations: synthetic data, one generator, two-number signature, N around 100, random rewiring and no attacker model.
+- [x] `M` Never claim actual identification in the report.
 
 # Phase P10 - Deliverables and Reporting
 
 ## P10.1 Source and README
 
-- [ ] `M` Ensure all source code is runnable and documented.
-- [ ] `M` Document setup and the exact CLI in `README.md`.
-- [ ] `M` Document expected output files and interpretation statement.
-- [ ] `M` Document private/shareable file handling.
+- [x] `M` Ensure all source code is runnable and documented.
+- [x] `M` Document setup and the exact CLI in `README.md`.
+- [x] `M` Document expected output files and interpretation statement.
+- [x] `M` Document private/shareable file handling.
 
 ## P10.2 Results Data
 
-- [ ] `M` Write `results/results.json`.
-- [ ] `M` Store UTF-8, indented and sorted JSON keys.
-- [ ] `M` Preserve full float precision in JSON.
-- [ ] `M` Show 4 decimal places only in human-readable tables.
-- [ ] `M` Write `results/comparison.md`.
-- [ ] `M` Write `results/comparison.csv`.
-- [ ] `M` Write `results/run.log`.
-- [ ] `M` Write `results/G_anon_edges.csv`.
-- [ ] `M` Write `results/environment.txt`.
-- [ ] `M` Include every key listed in the SRS results data dictionary.
-- [ ] `M` Save robustness summaries under `robust.*` when P8.1 runs.
-- [ ] `M` Save removed and added edge lists in perturbation results.
+- [x] `M` Write `results/results.json`.
+- [x] `M` Store UTF-8, indented and sorted JSON keys.
+- [x] `M` Preserve full float precision in JSON.
+- [x] `M` Show 4 decimal places only in human-readable tables.
+- [x] `M` Write `results/comparison.md`.
+- [x] `M` Write `results/comparison.csv`.
+- [x] `M` Write `results/run.log`.
+- [x] `M` Write `results/G_anon_edges.csv`.
+- [x] `M` Write `results/environment.txt`.
+- [x] `M` Include every key listed in the SRS results data dictionary.
+- [x] `M` Save robustness summaries under `robust.*` when P8.1 runs.
+- [x] `M` Save removed and added edge lists in perturbation results.
 
 ## P10.3 Figures
 
-- [ ] `S` Generate figures from the pipeline, not typed manually.
-- [ ] `S` Save PNG files under `results/figures/`.
-- [ ] `S` Preserve a useful resolution of at least 150 dpi.
+- [x] `S` Generate figures from the pipeline, not typed manually.
+- [x] `S` Save PNG files under `results/figures/`.
+- [x] `S` Preserve a useful resolution of at least 150 dpi.
 
 ## P10.4 Written Report
 
-- [ ] `M` Create `report/report.md`.
-- [ ] `M` Write a 150-word abstract.
-- [ ] `M` Cover title, introduction and wireless-social-network motivation.
-- [ ] `M` State problem statement and research questions.
-- [ ] `M` Explain method: generator, signature, uniqueness, relabelling, perturbation and metrics.
-- [ ] `M` Explain ELI5/analogy before formulas.
-- [ ] `M` Summarize implementation and reproducibility.
-- [ ] `M` Report baseline graph statistics.
-- [ ] `M` Report relabelling verdict.
-- [ ] `M` Report anonymised-versus-perturbed comparison table.
-- [ ] `M` Report robustness findings and model sensitivity if implemented.
-- [ ] `M` Include mandatory privacy interpretation and all limitations.
-- [ ] `M` Include mitigation pointers.
-- [ ] `M` Write conclusion.
-- [ ] `M` Verify reference details and citations against originals before submission.
+- [x] `M` Create `report/report.md`.
+- [x] `M` Write a 150-word abstract.
+- [x] `M` Cover title, introduction and wireless-social-network motivation.
+- [x] `M` State problem statement and research questions.
+- [x] `M` Explain method: generator, signature, uniqueness, relabelling, perturbation and metrics.
+- [x] `M` Explain ELI5/analogy before formulas.
+- [x] `M` Summarize implementation and reproducibility.
+- [x] `M` Report baseline graph statistics.
+- [x] `M` Report relabelling verdict.
+- [x] `M` Report anonymised-versus-perturbed comparison table.
+- [x] `M` Report robustness findings and model sensitivity if implemented.
+- [x] `M` Include mandatory privacy interpretation and all limitations.
+- [x] `M` Include mitigation pointers.
+- [x] `M` Write conclusion.
+- [ ] `M` Verify reference details and citations against each publisher's original record before submission; DOI metadata has been cross-checked, but this final source audit remains.
 - [ ] `M` Export PDF or DOCX if required by the course.
-- [ ] `M` Add seeds, versions, CLI command and full tables in an appendix.
-- [ ] `M` Add git hash or commit identifier if available.
+- [x] `M` Add seeds, versions, CLI command and full tables in an appendix.
+- [x] `M` Add git hash or commit identifier if available; note that the tree was dirty.
 
 ## P10.5 Slides
 
@@ -410,85 +410,85 @@ This roadmap is the executable to-do list for the course project specified in [s
 
 ## P10.6 Viva Preparation
 
-- [ ] `S` Prepare why relabelling does not change uniqueness.
-- [ ] `S` Prepare why degree and triangles are used.
-- [ ] `S` Prepare what `nx.triangles` returns.
-- [ ] `S` Prepare why identifiers are shuffled.
-- [ ] `S` Prepare why new edges come from original non-edges.
-- [ ] `S` Prepare whether rewiring preserves degrees.
-- [ ] `S` Prepare why clustering may change.
-- [ ] `S` Prepare whether a unique signature is a privacy breach.
-- [ ] `S` Prepare whether perturbation is a real defense.
-- [ ] `S` Prepare how results may change with another generator.
-- [ ] `S` Prepare how a tie at rank 5 is handled.
-- [ ] `S` Prepare how reproducibility is ensured.
+- [x] `S` Prepare why relabelling does not change uniqueness.
+- [x] `S` Prepare why degree and triangles are used.
+- [x] `S` Prepare what `nx.triangles` returns.
+- [x] `S` Prepare why identifiers are shuffled.
+- [x] `S` Prepare why new edges come from original non-edges.
+- [x] `S` Prepare whether rewiring preserves degrees.
+- [x] `S` Prepare why clustering may change.
+- [x] `S` Prepare whether a unique signature is a privacy breach.
+- [x] `S` Prepare whether perturbation is a real defense.
+- [x] `S` Prepare how results may change with another generator.
+- [x] `S` Prepare how a tie at rank 5 is handled.
+- [x] `S` Prepare how reproducibility is ensured.
 
 # Phase P11 - Quality Assurance and Closure
 
 ## P11.1 Automated Test Suite
 
-- [ ] `M` TC-01 assert graph type.
-- [ ] `M` TC-02 assert node count.
-- [ ] `M` TC-03 assert unique string names.
-- [ ] `M` TC-04 assert no name attributes.
-- [ ] `M` TC-05 assert no loops or isolates.
-- [ ] `M` TC-06 assert generation determinism.
-- [ ] `M` TC-07 assert signature tuple types.
-- [ ] `M` TC-08 verify handshake lemma.
-- [ ] `M` TC-09 verify triangle identity.
-- [ ] `M` TC-10 verify triangle upper bound.
-- [ ] `M` TC-11 verify uniqueness on a path of 4 nodes.
-- [ ] `M` TC-12 verify uniqueness on a 5-leaf star.
-- [ ] `M` TC-13 verify uniqueness on a 10-node cycle.
-- [ ] `M` TC-14 verify an empty graph raises an error.
-- [ ] `M` TC-15 verify mapping bijection.
-- [ ] `M` TC-16 verify identifier format.
-- [ ] `M` TC-17 verify relabel source graph remains unchanged.
-- [ ] `M` TC-18 verify anonymisation has no name leakage.
-- [ ] `M` TC-19 verify unique-count invariance.
-- [ ] `M` TC-20 verify signature-multiset invariance.
-- [ ] `M` TC-21 verify per-node mapped signatures.
-- [ ] `M` TC-22 verify mapped edge set and isomorphism.
-- [ ] `S` TC-23 verify negative-control relabelling corruption is detected.
-- [ ] `M` TC-24 verify the source graph fingerprint survives perturbation.
-- [ ] `M` TC-25 verify k rounding.
-- [ ] `M` TC-26 verify edge count preservation.
-- [ ] `M` TC-27 verify no loops or duplicate edges.
-- [ ] `M` TC-28 verify added edges are original absent edges.
-- [ ] `M` TC-29 verify removed/added disjointness and symmetric difference.
-- [ ] `M` TC-30 verify node set preservation.
-- [ ] `M` TC-31 verify `f=0` is an identity operation.
-- [ ] `M` TC-32 cross-check average clustering to manual local-coefficient mean.
-- [ ] `M` TC-33 verify top-five determinism.
-- [ ] `M` TC-34 verify rank-5 tie flag.
-- [ ] `S` TC-35 verify uniqueness-persistence metric.
-- [ ] `M` TC-36 verify comparison table completeness.
-- [ ] `S` TC-37 verify robustness summary statistics.
-- [ ] `M` TC-38 verify mandatory interpretation sentence in report.
-- [ ] `M` TC-39 verify limitations section in report.
-- [ ] `M` TC-40 verify CLI validation exit code 1.
-- [ ] `M` TC-41 verify whole-run reproducibility apart from timestamp.
-- [ ] `M` TC-42 verify clean virtual-environment installation.
-- [ ] `M` TC-43 verify shareable bundle privacy hygiene.
-- [ ] `M` TC-44 verify single-run performance under 5 seconds.
-- [ ] `M` TC-45 verify environment log completeness.
-- [ ] `M` TC-46 verify output files and JSON keys.
-- [ ] `M` TC-47 verify baseline stats and class-size histogram.
-- [ ] `M` TC-48 verify removal sample size and uniformity.
+- [x] `M` TC-01 assert graph type.
+- [x] `M` TC-02 assert node count.
+- [x] `M` TC-03 assert unique string names.
+- [x] `M` TC-04 assert no name attributes.
+- [x] `M` TC-05 assert no loops or isolates.
+- [x] `M` TC-06 assert generation determinism.
+- [x] `M` TC-07 assert signature tuple types.
+- [x] `M` TC-08 verify handshake lemma.
+- [x] `M` TC-09 verify triangle identity.
+- [x] `M` TC-10 verify triangle upper bound.
+- [x] `M` TC-11 verify uniqueness on a path of 4 nodes.
+- [x] `M` TC-12 verify uniqueness on a 5-leaf star.
+- [x] `M` TC-13 verify uniqueness on a 10-node cycle.
+- [x] `M` TC-14 verify an empty graph raises an error.
+- [x] `M` TC-15 verify mapping bijection.
+- [x] `M` TC-16 verify identifier format.
+- [x] `M` TC-17 verify relabel source graph remains unchanged.
+- [x] `M` TC-18 verify anonymisation has no name leakage.
+- [x] `M` TC-19 verify unique-count invariance.
+- [x] `M` TC-20 verify signature-multiset invariance.
+- [x] `M` TC-21 verify per-node mapped signatures.
+- [x] `M` TC-22 verify mapped edge set and isomorphism.
+- [x] `S` TC-23 verify negative-control relabelling corruption is detected.
+- [x] `M` TC-24 verify the source graph fingerprint survives perturbation.
+- [x] `M` TC-25 verify k rounding.
+- [x] `M` TC-26 verify edge count preservation.
+- [x] `M` TC-27 verify no loops or duplicate edges.
+- [x] `M` TC-28 verify added edges are original absent edges.
+- [x] `M` TC-29 verify removed/added disjointness and symmetric difference.
+- [x] `M` TC-30 verify node set preservation.
+- [x] `M` TC-31 verify `f=0` is an identity operation.
+- [x] `M` TC-32 cross-check average clustering to manual local-coefficient mean.
+- [x] `M` TC-33 verify top-five determinism.
+- [x] `M` TC-34 verify rank-5 tie flag.
+- [x] `S` TC-35 verify uniqueness-persistence metric.
+- [x] `M` TC-36 verify comparison table completeness.
+- [x] `S` TC-37 verify robustness summary statistics.
+- [x] `M` TC-38 verify mandatory interpretation sentence in report.
+- [x] `M` TC-39 verify limitations section in report.
+- [x] `M` TC-40 verify CLI validation exit code 1.
+- [x] `M` TC-41 verify whole-run reproducibility apart from timestamp.
+- [ ] `M` TC-42 verify a clean Arch system-Python package installation, without creating a virtual environment (per user setup requirement).
+- [x] `M` TC-43 verify shareable bundle privacy hygiene.
+- [x] `M` TC-44 verify single-run performance under 5 seconds.
+- [x] `M` TC-45 verify environment log completeness.
+- [x] `M` TC-46 verify output files and JSON keys.
+- [x] `M` TC-47 verify baseline stats and class-size histogram.
+- [x] `M` TC-48 verify removal sample size and uniformity.
 - [ ] `O` TC-49 verify sensitivity runs execute for each supported generator.
-- [ ] `M` TC-50 verify report sections against the SRS outline.
+- [x] `M` TC-50 verify report sections against the SRS outline.
 
 ## P11.2 Full Verification
 
-- [ ] `M` Run the full test suite.
+- [x] `M` Run the full test suite.
 - [ ] `M` Ensure every MUST test passes.
-- [ ] `M` Run the pipeline twice with the same seed.
-- [ ] `M` Diff outputs and ignore only timestamp differences.
-- [ ] `M` Ensure all seeds and versions are logged.
-- [ ] `M` Scan `results/` for names and private fields.
-- [ ] `M` Scan `private/` and keep it out of submission bundle.
-- [ ] `M` Validate all JSON and CSV outputs.
-- [ ] `M` Validate Markdown and PNG artifacts.
+- [x] `M` Run the pipeline twice with the same seed.
+- [x] `M` Diff outputs and ignore only timestamp differences.
+- [x] `M` Ensure all seeds and versions are logged.
+- [x] `M` Scan `results/` for names and private fields.
+- [x] `M` Scan `private/` and keep it out of submission bundle.
+- [x] `M` Validate all JSON and CSV outputs.
+- [x] `M` Validate Markdown and PNG artifacts.
 
 ## P11.3 Clean Environment
 
@@ -502,11 +502,11 @@ This roadmap is the executable to-do list for the course project specified in [s
 ## P11.4 Report Review
 
 - [ ] `M` Peer-read the interpretation section.
-- [ ] `M` Confirm no identification claim is made.
-- [ ] `M` Confirm every reported number matches `results.json`.
-- [ ] `M` Confirm the k rounding rule is stated.
-- [ ] `M` Confirm generator and parameters are stated.
-- [ ] `M` Confirm all limitations are stated.
+- [x] `M` Confirm no identification claim is made.
+- [x] `M` Confirm every reported number matches `results.json`.
+- [x] `M` Confirm the k rounding rule is stated.
+- [x] `M` Confirm generator and parameters are stated.
+- [x] `M` Confirm all limitations are stated.
 - [ ] `M` Confirm citations are verified.
 
 ## P11.5 Closure
