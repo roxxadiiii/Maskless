@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+private/*
+!private/.gitkeep
+
+results/*
+!results/.gitkeep
+
+report/*
+!report/.gitkeep
