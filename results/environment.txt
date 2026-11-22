@@ -1,7 +1,7 @@
 {
   "config": {
     "m_attach": 3,
-    "master_seed": 42,
+    "master_seed": 8,
     "model": "powerlaw_cluster",
     "n": 100,
     "no_plots": false,
@@ -14,11 +14,11 @@
   "networkx": "3.7",
   "python": "3.14.10",
   "seeds": {
-    "anon": 44,
-    "master": 42,
-    "names": 43,
-    "perturb": 45,
-    "robust_base": 1042
+    "anon": 10,
+    "master": 8,
+    "names": 9,
+    "perturb": 11,
+    "robust_base": 1008
   },
-  "timestamp": "2026-11-22T06:26:58.162852+00:00"
+  "timestamp": "2026-11-22T06:55:33.794663+00:00"
 }

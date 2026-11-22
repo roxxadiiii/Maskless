@@ -1,20 +1,20 @@
-2026-11-22 11:56:58,163 INFO Run started: {"config": {"m_attach": 3, "master_seed": 42, "model": "powerlaw_cluster", "n": 100, "no_plots": false, "out_dir": "results", "p_triad": 0.5, "rewire_fraction": 0.1, "robust_runs": 200, "top_k": 5}, "networkx": "3.7", "python": "3.14.10", "seeds": {"anon": 44, "master": 42, "names": 43, "perturb": 45, "robust_base": 1042}, "timestamp": "2026-11-22T06:26:58.162852+00:00"}
-2026-11-22 11:56:58,163 INFO Starting P1 synthetic network generation.
-2026-11-22 11:56:58,170 INFO Finished P1 synthetic network generation.
-2026-11-22 11:56:58,170 INFO Starting P2 signature computation.
-2026-11-22 11:56:58,171 INFO Finished P2/P3 signature and uniqueness analysis.
-2026-11-22 11:56:58,171 INFO Starting P4 anonymisation.
-2026-11-22 11:56:58,172 INFO Finished P4 anonymisation.
-2026-11-22 11:56:58,172 INFO Starting P5 relabelling verification.
-2026-11-22 11:56:58,184 INFO Finished P5 relabelling verification.
-2026-11-22 11:56:58,184 INFO Relabelling preserved structure: before=25/100 after=25/100 changed=False
-2026-11-22 11:56:58,184 INFO Relabelling changes labels, not graph structure or structural signatures.
-2026-11-22 11:56:58,184 INFO Starting P6 edge perturbation.
-2026-11-22 11:56:58,192 INFO Finished P6 edge perturbation.
-2026-11-22 11:56:58,192 INFO Edge replacement: m=290 k=29 fraction=0.1 (round half up).
-2026-11-22 11:56:58,192 INFO Starting P7 graph comparison.
-2026-11-22 11:56:58,208 INFO Finished P7 graph comparison.
-2026-11-22 11:56:58,208 INFO Starting P8.1 robustness analysis with 200 perturbation seeds.
-2026-11-22 11:57:02,145 INFO Robustness summaries: {"average_clustering_after": {"maximum": 0.31604067203616537, "mean": 0.26806935764117107, "minimum": 0.20716589502115818, "percentile_05": 0.24004094211764893, "percentile_95": 0.2964657860496196, "standard_deviation": 0.01777105995887721}, "top_k_overlap": {"maximum": 5, "mean": 4.33, "minimum": 3, "percentile_05": 4.0, "percentile_95": 5.0, "standard_deviation": 0.548725796732758}, "unique_fraction_after": {"maximum": 0.3, "mean": 0.2322, "minimum": 0.12, "percentile_05": 0.18, "percentile_95": 0.28, "standard_deviation": 0.030268135059828186}}
-2026-11-22 11:57:02,145 INFO Finished P8.1 robustness analysis.
-2026-11-22 11:57:02,821 INFO Baseline statistics: {"avg_clustering": 0.35989158190413406, "components": 1, "connected": true, "degree_histogram": {"3": 38, "4": 20, "5": 12, "6": 7, "7": 6, "8": 2, "9": 2, "10": 3, "11": 1, "13": 1, "14": 1, "15": 2, "17": 2, "20": 1, "23": 1, "33": 1}, "degree_max": 33, "degree_mean": 5.8, "degree_min": 3, "density": 0.05858585858585859, "m": 290, "n": 100, "total_triangles": 152, "transitivity": 0.1805940594059406}
+2026-11-22 12:25:33,795 INFO Run started: {"config": {"m_attach": 3, "master_seed": 8, "model": "powerlaw_cluster", "n": 100, "no_plots": false, "out_dir": "results", "p_triad": 0.5, "rewire_fraction": 0.1, "robust_runs": 200, "top_k": 5}, "networkx": "3.7", "python": "3.14.10", "seeds": {"anon": 10, "master": 8, "names": 9, "perturb": 11, "robust_base": 1008}, "timestamp": "2026-11-22T06:55:33.794663+00:00"}
+2026-11-22 12:25:33,795 INFO Starting P1 synthetic network generation.
+2026-11-22 12:25:33,807 INFO Finished P1 synthetic network generation.
+2026-11-22 12:25:33,807 INFO Starting P2 signature computation.
+2026-11-22 12:25:33,808 INFO Finished P2/P3 signature and uniqueness analysis.
+2026-11-22 12:25:33,808 INFO Starting P4 anonymisation.
+2026-11-22 12:25:33,809 INFO Finished P4 anonymisation.
+2026-11-22 12:25:33,809 INFO Starting P5 relabelling verification.
+2026-11-22 12:25:33,820 INFO Finished P5 relabelling verification.
+2026-11-22 12:25:33,820 INFO Relabelling preserved structure: before=19/100 after=19/100 changed=False
+2026-11-22 12:25:33,820 INFO Relabelling changes labels, not graph structure or structural signatures.
+2026-11-22 12:25:33,820 INFO Starting P6 edge perturbation.
+2026-11-22 12:25:33,825 INFO Finished P6 edge perturbation.
+2026-11-22 12:25:33,825 INFO Edge replacement: m=291 k=29 fraction=0.1 (round half up).
+2026-11-22 12:25:33,825 INFO Starting P7 graph comparison.
+2026-11-22 12:25:33,838 INFO Finished P7 graph comparison.
+2026-11-22 12:25:33,838 INFO Starting P8.1 robustness analysis with 200 perturbation seeds.
+2026-11-22 12:25:36,619 INFO Robustness summaries: {"average_clustering_after": {"maximum": 0.3103612835851226, "mean": 0.26452930637085353, "minimum": 0.21692146860707232, "percentile_05": 0.23629760389792467, "percentile_95": 0.29523099733594754, "standard_deviation": 0.017468227251943906}, "top_k_overlap": {"maximum": 5, "mean": 4.975, "minimum": 4, "percentile_05": 5.0, "percentile_95": 5.0, "standard_deviation": 0.15612494995995996}, "unique_fraction_after": {"maximum": 0.3, "mean": 0.21864999999999998, "minimum": 0.14, "percentile_05": 0.1695, "percentile_95": 0.27, "standard_deviation": 0.030474210408146754}}
+2026-11-22 12:25:36,619 INFO Finished P8.1 robustness analysis.
+2026-11-22 12:25:37,579 INFO Baseline statistics: {"avg_clustering": 0.35548388921020496, "components": 1, "connected": true, "degree_histogram": {"3": 40, "4": 19, "5": 7, "6": 12, "7": 6, "8": 2, "10": 2, "11": 1, "12": 2, "13": 4, "20": 3, "26": 1, "28": 1}, "degree_max": 28, "degree_mean": 5.82, "degree_min": 3, "density": 0.058787878787878785, "m": 291, "n": 100, "total_triangles": 142, "transitivity": 0.1685126582278481}

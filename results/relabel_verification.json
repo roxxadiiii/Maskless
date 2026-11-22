@@ -1,11 +1,11 @@
 {
-  "anonymized_unique_count": 25,
-  "anonymized_unique_fraction": 0.25,
+  "anonymized_unique_count": 19,
+  "anonymized_unique_fraction": 0.19,
   "count_matches": true,
   "isomorphic": true,
   "mapped_edges_match": true,
-  "named_unique_count": 25,
-  "named_unique_fraction": 0.25,
+  "named_unique_count": 19,
+  "named_unique_fraction": 0.19,
   "passed": true,
   "per_node_signatures_match": true,
   "signature_multiset_matches": true

@@ -6,8 +6,8 @@
 | Programme | M.Sc. Artificial Intelligence, Central University of South Bihar (CUSB) |
 | Author | Aditya Kumar |
 | Instructor | Dr. Nemi Chandra Rathore |
-| Roll number | To be supplied by the author |
-| Submission date | To be supplied by the author |
+| Roll number | CUSB2502332005 |
+| Submission date | 23 November 2026 |
 | Report date | 22 November 2026 |
 
 ## Abstract

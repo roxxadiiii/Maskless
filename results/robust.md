@@ -4,8 +4,8 @@ The anonymous base graph is fixed across runs. Standard deviation is population 
 
 | Metric | Mean | SD | Min | 5th pct | 95th pct | Max |
 |---|---:|---:|---:|---:|---:|---:|
-| Unique fraction after | 0.2322 | 0.0303 | 0.1200 | 0.1800 | 0.2800 | 0.3000 |
-| Average clustering after | 0.2681 | 0.0178 | 0.2072 | 0.2400 | 0.2965 | 0.3160 |
-| Top-5 overlap (count) | 4.3300 | 0.5487 | 3 | 4.0000 | 5.0000 | 5 |
+| Unique fraction after | 0.2186 | 0.0305 | 0.1400 | 0.1695 | 0.2700 | 0.3000 |
+| Average clustering after | 0.2645 | 0.0175 | 0.2169 | 0.2363 | 0.2952 | 0.3104 |
+| Top-5 overlap (count) | 4.9750 | 0.1561 | 4 | 5.0000 | 5.0000 | 5 |
 
-Across these runs, the unique fraction varied from 0.1200 to 0.3000, average clustering varied from 0.2072 to 0.3160, and top-5 overlap varied from 3.0000 to 5.0000. These ranges describe perturbation-to-perturbation variation for this fixed graph and seed sequence only; they do not measure variation between base networks or establish a general result across graph models.
+Across these runs, the unique fraction varied from 0.1400 to 0.3000, average clustering varied from 0.2169 to 0.3104, and top-5 overlap varied from 4.0000 to 5.0000. These ranges describe perturbation-to-perturbation variation for this fixed graph and seed sequence only; they do not measure variation between base networks or establish a general result across graph models.

@@ -1,0 +1,210 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Structural Distinctiveness in a Synthetic Social Network}\markdownRendererInterblockSeparator
+{}\markdownRendererPipe{} Field \markdownRendererPipe{} Value \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Course \markdownRendererPipe{} Wireless Social Network \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Programme \markdownRendererPipe{} M.Sc. Artificial Intelligence, Central University of South Bihar (CUSB) \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Author \markdownRendererPipe{} Aditya Kumar \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Instructor \markdownRendererPipe{} Dr. Nemi Chandra Rathore \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Roll number \markdownRendererPipe{} To be supplied by the author \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Submission date \markdownRendererPipe{} To be supplied by the author \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Report date \markdownRendererPipe{} 22 November 2026 \markdownRendererPipe{}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Abstract}\markdownRendererInterblockSeparator
+{}Anonymising a social network by replacing names may leave structural patterns intact. This study tests that question on a synthetic undirected graph of 100 fictional users generated with the powerlaw-cluster model. Each node is represented by its degree and triangle count; uniqueness is the fraction whose pair occurs once. A seeded bijection replaces names with identifiers, and checks test invariance. An anonymised copy then undergoes 10\markdownRendererPercentSign{} edge replacement using pairs absent from the original graph, preserving edge count. For seed 42, 25 of 100 signatures were unique before and after relabelling. Rewiring 29 of 290 edges reduced uniqueness to 24 nodes and average clustering from 0.3599 to 0.2805; top-five membership remained 5/5, but order changed. Across 200 perturbations of one base graph, unique fraction ranged from 0.12 to 0.30. These findings indicate potential structural privacy concerns in this controlled synthetic experiment, not real-world identification, attack success, or a privacy guarantee.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{1. Introduction and motivation}\markdownRendererInterblockSeparator
+{}Wireless social-network applications can represent people or devices as nodes and relationships or communication links as edges. Removing names from such a graph may not remove its structure. A node's local pattern can remain distinctive, which motivates studying structural privacy before publishing network data. Prior work has examined structural re-identification and graph anonymisation [1–4]. This project uses only generated data: its wireless-network framing is motivational, and it does not simulate radios, mobility, or a real community.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Problem statement}\markdownRendererInterblockSeparator
+{}This study asks whether replacing names with anonymous identifiers changes the uniqueness of a simple structural signature, and how a seeded 10\markdownRendererPercentSign{} edge-replacement operation changes signature uniqueness, average clustering, and the top-five degree ranking. It also measures how those perturbation outcomes vary across repeated seeds while holding one base graph fixed.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Research questions}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBeginTight
+\markdownRendererOlItemWithNumber{1}Does label-only anonymisation change the fraction of unique \markdownRendererCodeSpan{(degree, triangle count)} signatures?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}What changes in signature uniqueness, average clustering, and the top-five degree ranking after 10\markdownRendererPercentSign{} edge replacement?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}How much do those three post-perturbation measurements vary over 200 perturbation seeds on the same base graph?\markdownRendererOlItemEnd 
+\markdownRendererOlEndTight \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{2. Method}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{ELI5: name tags and two-number fingerprints}\markdownRendererInterblockSeparator
+{}Imagine a club represented by a map: people are dots and friendships are lines. Each person gets a two-number fingerprint: their number of friends and the number of friend-triangles they participate in. Replacing a person's name tag with a random code changes the label, not the map or fingerprint. Rewiring some friendship lines changes the map and can change fingerprints. A fingerprint that appears once is distinctive within this particular map; it is not, by itself, proof of who the person is.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Formal method}\markdownRendererInterblockSeparator
+{}The default graph is an undirected, simple \markdownRendererCodeSpan{powerlaw\markdownRendererUnderscore{}cluster\markdownRendererUnderscore{}graph} generated with \markdownRendererCodeSpan{N=100}, attachment parameter \markdownRendererCodeSpan{m=3}, triad probability \markdownRendererCodeSpan{p=0.5}, and seed \markdownRendererCodeSpan{42}. For each node \markdownRendererCodeSpan{v}, the signature is \markdownRendererCodeSpan{s(v) = (degree(v), triangles(v))}. A signature is unique when its frequency in the graph equals one; the unique fraction is the number of such nodes divided by \markdownRendererCodeSpan{N}.\markdownRendererParagraphSeparator
+{}Fictional names are replaced by a seeded random bijection to \markdownRendererCodeSpan{U\markdownRendererHash{}\markdownRendererHash{}\markdownRendererHash{}} labels using a fresh graph copy. Verification compares exact unique counts and signature multisets, mapped per-node signatures, mapped edges, and graph isomorphism. The perturbation is then applied to a fresh copy of the anonymous graph. For \markdownRendererCodeSpan{m\markdownRendererUnderscore{}e} edges and fraction \markdownRendererCodeSpan{f=0.10}, the replacement count is \markdownRendererCodeSpan{k = int(f * m\markdownRendererUnderscore{}e + 0.5)}. Removed edges are sampled without replacement from existing edges; added edges are sampled without replacement from pairs absent in the original graph. The original graph is not modified, and the total edge count is preserved.\markdownRendererParagraphSeparator
+{}The Holme–Kim generator was selected as the default because it combines a heavy-tailed degree distribution with triad formation, producing varied signatures while remaining a simple, seeded NetworkX call. Results are therefore model-dependent: another generator may produce a different unique fraction. The signature is deliberately weak, since degree and triangle count ignore who the neighbours are, yet even this two-number fingerprint can already be distinctive.\markdownRendererParagraphSeparator
+{}Before/after metrics are: unique-signature count and fraction, average local clustering coefficient (including zero values), and top-five degree ranking with deterministic identifier-based tie-breaking. Supplemental measures include transitivity, component count, rank movement, and signature persistence. Robustness holds \markdownRendererCodeSpan{G\markdownRendererUnderscore{}anon} fixed and repeats perturbation and comparison for 200 seeds beginning at \markdownRendererCodeSpan{master\markdownRendererUnderscore{}seed + 1000}; summaries use population standard deviation (\markdownRendererCodeSpan{ddof=0}) and linearly interpolated type-7 percentiles.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{3. Implementation and reproducibility}\markdownRendererInterblockSeparator
+{}The pipeline is implemented in Python with NetworkX. Separate random seeds isolate graph generation, fictional-name assignment, anonymisation, the primary perturbation, and robustness runs. Edge candidates are sorted before sampling to keep runs deterministic. Automated tests cover configuration, invariants, calculations, outputs, and seeded robustness. The shareable outputs exclude the private name-to-identifier mapping and named graph edge list.\markdownRendererParagraphSeparator
+{}For the reported default run, the environment was Python \markdownRendererCodeSpan{3.14.10} and NetworkX \markdownRendererCodeSpan{3.7}. The command was:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{./14bfe2fb38388e3c403368da44085467.verbatim}{bash}{bash}\markdownRendererInterblockSeparator
+{}The stage seeds were master \markdownRendererCodeSpan{42}, names \markdownRendererCodeSpan{43}, anonymisation \markdownRendererCodeSpan{44}, primary perturbation \markdownRendererCodeSpan{45}, and robustness seeds \markdownRendererCodeSpan{1042} through \markdownRendererCodeSpan{1241}. Full precision data and parameters are in \markdownRendererLink{\markdownRendererCodeSpan{results.json}}{../results/results.json}{../results/results.json}{}; execution outputs and environment metadata are in \markdownRendererCodeSpan{results/}.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{4. Results}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Baseline graph}\markdownRendererInterblockSeparator
+{}The generated graph had 100 nodes and 290 edges, density \markdownRendererCodeSpan{0.0586}, mean degree \markdownRendererCodeSpan{5.8}, minimum degree \markdownRendererCodeSpan{3}, maximum degree \markdownRendererCodeSpan{33}, and 152 triangles. It was connected (one component). Baseline average clustering was \markdownRendererCodeSpan{0.3599}; transitivity was \markdownRendererCodeSpan{0.1806}.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Relabelling}\markdownRendererInterblockSeparator
+{}Before relabelling, 25 of 100 nodes (\markdownRendererCodeSpan{0.25}) had unique signatures. After relabelling, the count and fraction were still 25 and \markdownRendererCodeSpan{0.25}. Per-node signatures, the signature multiset, and the mapped edge set matched, and the graphs were isomorphic. Thus, for this run, replacing labels alone did not change structural uniqueness. Unique signatures were associated with higher degree in this graph: the 25 unique nodes had mean degree \markdownRendererCodeSpan{11.64} versus \markdownRendererCodeSpan{5.80} across all nodes, all 13 nodes with degree at least 10 were unique, and 12 of the remaining 87 nodes (\markdownRendererCodeSpan{13.8\markdownRendererPercentSign{}}) were unique. This is a measured observation for this base graph, not an expected result.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Primary perturbation comparison}\markdownRendererInterblockSeparator
+{}The run replaced 29 of 290 edges, preserving the edge count.\markdownRendererParagraphSeparator
+{}\markdownRendererPipe{} Metric \markdownRendererPipe{} Before \markdownRendererPipe{} After \markdownRendererPipe{} Change \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Unique signature count \markdownRendererPipe{} 25 \markdownRendererPipe{} 24 \markdownRendererPipe{} -1 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Unique fraction \markdownRendererPipe{} 0.2500 \markdownRendererPipe{} 0.2400 \markdownRendererPipe{} -1.0000 percentage point \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Average clustering \markdownRendererPipe{} 0.3599 \markdownRendererPipe{} 0.2805 \markdownRendererPipe{} -0.0794 (-22.0562\markdownRendererPercentSign{}) \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Top-five degree ranking \markdownRendererPipe{} U051:33, U079:23, U055:20, U050:17, U089:17 \markdownRendererPipe{} U051:30, U055:20, U079:19, U050:17, U089:15 \markdownRendererPipe{} Overlap 5/5; order changed; no rank-five tie \markdownRendererPipe{}\markdownRendererParagraphSeparator
+{}The top-five membership stayed the same, but the second and third positions switched: \markdownRendererCodeSpan{U079} and \markdownRendererCodeSpan{U055}. There was no tie at rank five in either graph. In the supplementary measures, 69 nodes changed signature; of the 25 nodes unique before perturbation, 3 retained the exact signature and 17 remained unique. The graph remained connected with no isolates. These observations describe this one perturbation draw, not a universal effect.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Repeated perturbations}\markdownRendererInterblockSeparator
+{}With the same anonymous base graph and 200 distinct perturbation seeds, the results were:\markdownRendererParagraphSeparator
+{}\markdownRendererPipe{} Post-perturbation metric \markdownRendererPipe{} Mean \markdownRendererPipe{} Population SD \markdownRendererPipe{} Min \markdownRendererPipe{} 5th pct \markdownRendererPipe{} 95th pct \markdownRendererPipe{} Max \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Unique fraction \markdownRendererPipe{} 0.2322 \markdownRendererPipe{} 0.0303 \markdownRendererPipe{} 0.1200 \markdownRendererPipe{} 0.1800 \markdownRendererPipe{} 0.2800 \markdownRendererPipe{} 0.3000 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Average clustering \markdownRendererPipe{} 0.2681 \markdownRendererPipe{} 0.0178 \markdownRendererPipe{} 0.2072 \markdownRendererPipe{} 0.2400 \markdownRendererPipe{} 0.2965 \markdownRendererPipe{} 0.3160 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Top-five overlap (count) \markdownRendererPipe{} 4.3300 \markdownRendererPipe{} 0.5487 \markdownRendererPipe{} 3 \markdownRendererPipe{} 4.0000 \markdownRendererPipe{} 5.0000 \markdownRendererPipe{} 5 \markdownRendererPipe{}\markdownRendererParagraphSeparator
+{}The measures varied across perturbations, so the single-run values should not be treated as inevitable. These distributions quantify only perturbation-to-perturbation variation for this fixed graph and seed sequence; they do not capture variation across base graphs or generators.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{5. Privacy interpretation}\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{The distinctive structural signatures observed illustrate a potential privacy concern. They do not establish that any person can actually be identified, because identification would additionally require accurate auxiliary knowledge, a reliable matching procedure, and a link from an anonymous node to a real individual.} This project measures structural distinctiveness, not identity disclosure or attack success.\markdownRendererParagraphSeparator
+{}Replacing names with random identifiers hides labels, but it does not hide topology: the same edges and signatures remain. In the primary perturbation, exact signature matches became less stable, and clustering and rank order drifted. This suggests that exact auxiliary signatures may be less reliable after this particular perturbation, but it does not provide a formal privacy guarantee. The observed clustering change and ranking movement also demonstrate a utility cost; preserving edge count alone does not preserve every graph property.\markdownRendererParagraphSeparator
+{}The following reasons prevent treating uniqueness as proof of identification:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBeginTight
+\markdownRendererOlItemWithNumber{1}\markdownRendererStrongEmphasis{Auxiliary knowledge is required.} An observer would need the target's exact degree and triangle count; such information may not be available.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererStrongEmphasis{Exactness is fragile.} Small edge changes alter signatures. Inaccurate auxiliary knowledge can produce mismatches or false matches.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}\markdownRendererStrongEmphasis{Uniqueness is graph-relative.} A signature unique among these 100 generated nodes may be common in a larger graph, and a real target may not be represented at all.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}\markdownRendererStrongEmphasis{Structure is not identity.} A match points to an anonymous node such as \markdownRendererCodeSpan{U047}, not to a real person; linking them requires additional external information.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}\markdownRendererStrongEmphasis{A necessary, not sufficient, condition.} Here uniqueness is only a screening indicator. Identification requires an actual matching procedure and evidence that the match is correct.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}\markdownRendererStrongEmphasis{The data are synthetic.} Results from one generator do not establish the risk in any real community.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}\markdownRendererStrongEmphasis{Risk is probabilistic.} The supported conclusion is a potential concern deserving careful assessment, not that individuals are identifiable.\markdownRendererOlItemEnd 
+\markdownRendererOlEndTight \markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Mitigation pointers}\markdownRendererInterblockSeparator
+{}These are directions for further study, not protections evaluated or guaranteed by this project:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererStrongEmphasis{k-degree anonymity:} generalize or modify degree patterns so a node's degree is shared by a group [4].\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{k-neighbourhood anonymity:} consider the larger local neighbourhood, not only one degree value; graph anonymisation methods require careful utility and threat-model evaluation [3].\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Formally analyzed edge perturbation:} define an attacker and privacy notion, then prove or measure the guarantee; random rewiring alone is not such an analysis.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Differential privacy for graph statistics:} calibrate noise to a stated adjacency model and sensitivity; differential privacy is a formal framework, not a property inherited by this release [6].\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Release aggregates instead of an individual-level graph:} where possible, publish appropriately protected summaries rather than node-level edges.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{6. Limitations}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem The graph and names are synthetic; no real personal data or community was studied.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The reported experiment uses one \markdownRendererCodeSpan{powerlaw\markdownRendererUnderscore{}cluster} base graph. Optional generator, size, and repeated-base sensitivity sweeps were not run.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The signature uses only two local features: degree and triangle count.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The network has 100 nodes; results need not scale to larger or smaller graphs.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Rewiring is simple random edge replacement and has no formal privacy analysis.\markdownRendererUlItemEnd 
+\markdownRendererUlItem No attacker, real auxiliary dataset, identity matching, or ground-truth identification experiment was implemented.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The 200-run robustness analysis fixes one base graph, so it does not estimate between-network uncertainty.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The wireless-social-network setting is a motivation only; there is no radio, mobility, or communication simulation.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{7. Conclusion}\markdownRendererInterblockSeparator
+{}In this seeded synthetic example, label replacement preserved the unique-signature fraction exactly, while replacing 10\markdownRendererPercentSign{} of the edges reduced it by one percentage point and lowered average clustering by about 22\markdownRendererPercentSign{}. The top-five set remained unchanged, although its order shifted. Repeated perturbations showed meaningful variation on the fixed base graph. Together, the results support caution about releasing name-stripped graphs and show a measurable utility trade-off, but they do not establish real-person identification or a formal privacy guarantee. Broader claims require additional generators, base graphs, threat models, and formal privacy analysis.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{References}\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{Source audit completed 22 November 2026.} Each entry was checked against its publisher-deposited Crossref record (\markdownRendererCodeSpan{https://api.crossref.org/works/<DOI>}). Authors, title, venue, year, page range and DOI agree with the records consulted; the page range for reference 4 was added from that record. This audit confirms bibliographic metadata, not that every cited claim was re-read in full.\markdownRendererInterblockSeparator
+{}\markdownRendererOlBeginTight
+\markdownRendererOlItemWithNumber{1}L. Backstrom, C. Dwork, and J. Kleinberg. “Wherefore Art Thou R3579X?: Anonymized Social Networks, Hidden Patterns, and Structural Steganography.” \markdownRendererEmphasis{Proceedings of the 16th International World Wide Web Conference}, 2007, pp. 181–190. \markdownRendererLink{doi:10.1145/1242572.1242598}{https://doi.org/10.1145/1242572.1242598}{https://doi.org/10.1145/1242572.1242598}{}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}A. Narayanan and V. Shmatikov. “De-anonymizing Social Networks.” \markdownRendererEmphasis{2009 IEEE Symposium on Security and Privacy}, pp. 173–187. \markdownRendererLink{doi:10.1109/SP.2009.22}{https://doi.org/10.1109/SP.2009.22}{https://doi.org/10.1109/SP.2009.22}{}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}M. Hay, G. Miklau, D. Jensen, D. Towsley, and P. Weis. “Resisting Structural Re-identification in Anonymized Social Networks.” \markdownRendererEmphasis{Proceedings of the VLDB Endowment}, 1(1), 2008, pp. 102–114. \markdownRendererLink{doi:10.14778/1453856.1453873}{https://doi.org/10.14778/1453856.1453873}{https://doi.org/10.14778/1453856.1453873}{}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}K. Liu and E. Terzi. “Towards Identity Anonymization on Graphs.” \markdownRendererEmphasis{Proceedings of the 2008 ACM SIGMOD International Conference on Management of Data}, 2008, pp. 93–106. \markdownRendererLink{doi:10.1145/1376616.1376629}{https://doi.org/10.1145/1376616.1376629}{https://doi.org/10.1145/1376616.1376629}{}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}L. Sweeney. “k-Anonymity: A Model for Protecting Privacy.” \markdownRendererEmphasis{International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems}, 10(5), 2002, pp. 557–570. \markdownRendererLink{doi:10.1142/S0218488502001648}{https://doi.org/10.1142/S0218488502001648}{https://doi.org/10.1142/S0218488502001648}{}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}C. Dwork. “Differential Privacy.” In \markdownRendererEmphasis{Automata, Languages and Programming (ICALP 2006)}, Part II, Lecture Notes in Computer Science 4052, 2006, pp. 1–12. \markdownRendererLink{doi:10.1007/11787006\markdownRendererUnderscore{}1}{https://doi.org/10.1007/11787006\markdownRendererUnderscore{}1}{https://doi.org/10.1007/11787006_1}{}.\markdownRendererOlItemEnd 
+\markdownRendererOlEndTight \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Appendix A. Run details}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem Python: \markdownRendererCodeSpan{3.14.10}; NetworkX: \markdownRendererCodeSpan{3.7}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Configuration and seeds: see \markdownRendererCodeSpan{results/results.json} and \markdownRendererCodeSpan{results/environment.txt}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Master seed: \markdownRendererCodeSpan{42}; perturbation seed: \markdownRendererCodeSpan{45}; robustness seeds: \markdownRendererCodeSpan{1042–1241}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Command: \markdownRendererCodeSpan{python -m src.main --n 100 --model powerlaw\markdownRendererUnderscore{}cluster --m 3 --p 0.5 --seed 42 --rewire 0.10 --topk 5 --robust-runs 200 --out results}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The source release is tagged \markdownRendererCodeSpan{v1.0.0}; the generated report and results are delivered in \markdownRendererCodeSpan{dist/maskless-shareable.tar.gz} because \markdownRendererCodeSpan{report/} and \markdownRendererCodeSpan{results/} are intentionally Git-ignored. The pre-closure draft HEAD was \markdownRendererCodeSpan{a096042} with a dirty tree, so that hash is not a release identifier.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The complete machine-readable measurements are in \markdownRendererCodeSpan{results/results.json}; the comparison and robustness summaries are in \markdownRendererCodeSpan{results/comparison.md} and \markdownRendererCodeSpan{results/robust.md}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The report describes the default configuration. If CLI parameters change, rerun the pipeline and revise this narrative against the new \markdownRendererCodeSpan{results/results.json}.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Appendix B. Viva preparation}\markdownRendererInterblockSeparator
+{}\markdownRendererPipe{} Question \markdownRendererPipe{} Short answer \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Why does relabelling not change uniqueness? \markdownRendererPipe{} It changes node labels only. The graph is isomorphic, so each node keeps its degree and triangle count. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Why use degree and triangles? \markdownRendererPipe{} They are simple local structural features that can be observed from a graph, but they are only a weak two-number signature. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} What does \markdownRendererCodeSpan{nx.triangles} return? \markdownRendererPipe{} A mapping from each node to the number of triangles containing that node. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Why shuffle identifiers? \markdownRendererPipe{} A seeded random bijection avoids making IDs correlate with generation order. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Why draw added edges from original non-edges? \markdownRendererPipe{} It ensures additions were genuinely absent before perturbation and prevents a removed edge from being re-added. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Does rewiring preserve degrees? \markdownRendererPipe{} No. It preserves the total number of edges, not each node's degree. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Why can clustering change? \markdownRendererPipe{} Removing edges can break existing triangles, while random additions may not close new triangles. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Is a unique signature a privacy breach? \markdownRendererPipe{} No. It is a potential risk indicator; it does not identify a real person. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Is this perturbation a proven defense? \markdownRendererPipe{} No. It has no formal privacy guarantee or attacker analysis. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Would another generator change results? \markdownRendererPipe{} It may; this report analyzes one base graph from one generator and does not claim model-independent findings. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} How is a rank-five tie handled? \markdownRendererPipe{} Ranking is deterministic by descending degree then identifier, and a tie at the fifth-place boundary is reported. \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} How is reproducibility ensured? \markdownRendererPipe{} Separate stage seeds, sorted sampling inputs, recorded package versions, and repeated-run tests. \markdownRendererPipe{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Appendix C. Filled results template (SRS Appendix E)}\markdownRendererInterblockSeparator
+{}All values below come from \markdownRendererCodeSpan{results/results.json} for the default seed-42 run. Display values use four decimal places; full precision remains in the JSON.\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Network.} Model: \markdownRendererCodeSpan{powerlaw\markdownRendererUnderscore{}cluster} (Holme–Kim); N = 100; m = 290; average degree = 5.8000; components = 1; total triangles = 152; average clustering = 0.3599.\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Relabelling check}\markdownRendererParagraphSeparator
+{}\markdownRendererPipe{} \markdownRendererPipe{} Unique count \markdownRendererPipe{} Unique fraction \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Named \markdownRendererPipe{} 25 \markdownRendererPipe{} 0.2500 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Anonymised \markdownRendererPipe{} 25 \markdownRendererPipe{} 0.2500 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Changed? \markdownRendererPipe{} No (difference 0) \markdownRendererPipe{} No (difference 0.0000) \markdownRendererPipe{}\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Perturbation.} m = 290; k = 29, using \markdownRendererCodeSpan{int(0.10 × 290 + 0.5)} (round half up). Seeds: master 42, names 43, anonymisation 44, primary perturbation 45.\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Comparison (anonymised vs perturbed)}\markdownRendererParagraphSeparator
+{}\markdownRendererPipe{} Metric \markdownRendererPipe{} Before \markdownRendererPipe{} After \markdownRendererPipe{} Change \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Unique count \markdownRendererPipe{} 25 \markdownRendererPipe{} 24 \markdownRendererPipe{} -1 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Unique fraction \markdownRendererPipe{} 0.2500 \markdownRendererPipe{} 0.2400 \markdownRendererPipe{} -0.0100 (-1 percentage point) \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Average clustering \markdownRendererPipe{} 0.3599 \markdownRendererPipe{} 0.2805 \markdownRendererPipe{} -0.0794 (-22.0562\markdownRendererPercentSign{}) \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Transitivity \markdownRendererPipe{} 0.1806 \markdownRendererPipe{} 0.1533 \markdownRendererPipe{} -0.0273 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Components \markdownRendererPipe{} 1 \markdownRendererPipe{} 1 \markdownRendererPipe{} 0 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Distinct signatures \markdownRendererPipe{} 40 \markdownRendererPipe{} 40 \markdownRendererPipe{} 0 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Largest signature class \markdownRendererPipe{} 18 \markdownRendererPipe{} 15 \markdownRendererPipe{} -3 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Originally unique nodes with unchanged signature \markdownRendererPipe{} N/A \markdownRendererPipe{} 3/25 (0.1200) \markdownRendererPipe{} N/A \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Originally unique nodes still unique \markdownRendererPipe{} N/A \markdownRendererPipe{} 17/25 (0.6800) \markdownRendererPipe{} N/A \markdownRendererPipe{}\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Top five by degree}\markdownRendererParagraphSeparator
+{}\markdownRendererPipe{} Rank \markdownRendererPipe{} Before (id, degree) \markdownRendererPipe{} After (id, degree) \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---:\markdownRendererPipe{}---\markdownRendererPipe{}---\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} 1 \markdownRendererPipe{} U051, 33 \markdownRendererPipe{} U051, 30 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} 2 \markdownRendererPipe{} U079, 23 \markdownRendererPipe{} U055, 20 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} 3 \markdownRendererPipe{} U055, 20 \markdownRendererPipe{} U079, 19 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} 4 \markdownRendererPipe{} U050, 17 \markdownRendererPipe{} U050, 17 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} 5 \markdownRendererPipe{} U089, 17 \markdownRendererPipe{} U089, 15 \markdownRendererPipe{}\markdownRendererParagraphSeparator
+{}Overlap: 5 / 5. Same order: No. Tie at rank 5: No before, No after.\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Robustness (R = 200)}\markdownRendererParagraphSeparator
+{}\markdownRendererPipe{} Metric \markdownRendererPipe{} Mean \markdownRendererPipe{} SD \markdownRendererPipe{} Min \markdownRendererPipe{} 5th pct \markdownRendererPipe{} 95th pct \markdownRendererPipe{} Max \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{}---\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}---:\markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Unique fraction after \markdownRendererPipe{} 0.2322 \markdownRendererPipe{} 0.0303 \markdownRendererPipe{} 0.1200 \markdownRendererPipe{} 0.1800 \markdownRendererPipe{} 0.2800 \markdownRendererPipe{} 0.3000 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Average clustering after \markdownRendererPipe{} 0.2681 \markdownRendererPipe{} 0.0178 \markdownRendererPipe{} 0.2072 \markdownRendererPipe{} 0.2400 \markdownRendererPipe{} 0.2965 \markdownRendererPipe{} 0.3160 \markdownRendererPipe{}\markdownRendererSoftLineBreak
+{}\markdownRendererPipe{} Top-five overlap \markdownRendererPipe{} 4.3300 \markdownRendererPipe{} 0.5487 \markdownRendererPipe{} 3 \markdownRendererPipe{} 4.0000 \markdownRendererPipe{} 5.0000 \markdownRendererPipe{} 5 \markdownRendererPipe{}\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Interpretation statement (copied into Section 5).} The distinctive structural signatures observed illustrate a potential privacy concern. They do not establish that any person can actually be identified, because identification would additionally require accurate auxiliary knowledge, a reliable matching procedure, and a link from an anonymous node to a real individual.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd
