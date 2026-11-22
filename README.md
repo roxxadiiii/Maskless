@@ -41,6 +41,10 @@ Generated baseline and uniqueness summaries, the anonymous edge list, relabellin
 pytest
 ```
 
+## Verification and release
+
+The QA evidence, test results, risk-mitigation mapping and citation audit are recorded in `results/verification.md`. Two separate archives are provided: `dist/maskless-shareable.tar.gz` (source, tests, report and shareable results, without `private/`) and `dist/maskless-private.tar.gz` (the name-to-ID mapping and named edge list only). Generated `results/` and `report/` files are intentionally ignored by Git and are delivered in the shareable archive; the source release is tagged `v1.0.0`.
+
 ## Scope and privacy
 
 All network data is generated synthetically, and all names are fictional. No real person is targeted, no real personal data is used, and this project does not implement a re-identification attack or formal privacy mechanism. The wireless-social-network setting is motivational only; no radio or mobility simulation is performed.

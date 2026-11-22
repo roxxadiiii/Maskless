@@ -58,6 +58,7 @@ class _ArgumentParser(argparse.ArgumentParser):
     """Make command-line validation use the documented validation exit code."""
 
     def error(self, message: str) -> None:
+        """Raise ValueError so CLI validation maps to the documented exit code."""
         raise ValueError(message)
 
 

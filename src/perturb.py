@@ -31,6 +31,7 @@ def replacement_count(edge_count: int, fraction: float) -> int:
 
 
 def _edge_fingerprint(graph: nx.Graph) -> tuple[Edge, ...]:
+    """Return a canonical sorted edge tuple that detects source mutation."""
     return tuple(sorted(tuple(sorted(edge)) for edge in graph.edges()))
 
 

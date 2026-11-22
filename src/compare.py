@@ -11,6 +11,7 @@ from src.signature import signatures
 
 
 def _uniqueness_summary(stats: UniquenessStats) -> dict[str, Any]:
+    """Summarise unique counts and fractions as exact integers and display floats."""
     return {
         "count": stats.unique_count,
         "fraction": stats.unique_fraction,
@@ -21,23 +22,27 @@ def _uniqueness_summary(stats: UniquenessStats) -> dict[str, Any]:
 
 
 def _ranking(graph: nx.Graph) -> tuple[list[tuple[str, int]], dict[str, int]]:
+    """Rank nodes by descending degree with the identifier as a deterministic tie-break."""
     ranked = sorted(graph.degree(), key=lambda item: (-item[1], item[0]))
     return ranked, {node: rank for rank, (node, _) in enumerate(ranked, start=1)}
 
 
 def _tie_at_k(ranked: list[tuple[str, int]], k: int) -> bool:
+    """Report whether degree at rank k is tied with degree at rank k+1."""
     return len(ranked) > k and ranked[k - 1][1] == ranked[k][1]
 
 
 def _ranking_comparison(
     before: nx.Graph, after: nx.Graph, top_k: int
 ) -> dict[str, Any]:
+    """Compare two rankings by membership, order, and per-node movement."""
     before_ranked, before_ranks = _ranking(before)
     after_ranked, after_ranks = _ranking(after)
     before_top, after_top = before_ranked[:top_k], after_ranked[:top_k]
     top_nodes = sorted({node for node, _ in before_top + after_top})
 
     def movement(nodes: list[str]) -> list[dict[str, Any]]:
+        """Compute per-node rank movement, with positive values meaning improvement."""
         return [
             {
                 "id": node,
@@ -71,6 +76,7 @@ def _persistence(
     after_signatures: dict[Any, tuple[int, int]],
     before_unique: UniquenessStats,
 ) -> dict[str, Any]:
+    """Measure how often originally unique signatures survive perturbation."""
     originally_unique = before_unique.unique_nodes
     after_frequencies = Counter(after_signatures.values())
     unchanged_count = sum(
@@ -101,6 +107,7 @@ def _uniqueness_comparison(
     before_signatures: dict[Any, tuple[int, int]],
     after_signatures: dict[Any, tuple[int, int]],
 ) -> dict[str, Any]:
+    """Compare uniqueness in integer counts and percentage points."""
     before_unique = unique_stats(before_signatures)
     after_unique = unique_stats(after_signatures)
     fraction_change = after_unique.unique_fraction - before_unique.unique_fraction
@@ -115,6 +122,7 @@ def _uniqueness_comparison(
 
 
 def _clustering_comparison(before: nx.Graph, after: nx.Graph) -> dict[str, Any]:
+    """Compare mean local clustering with absolute and relative deltas."""
     before_value = nx.average_clustering(before, count_zeros=True)
     after_value = nx.average_clustering(after, count_zeros=True)
     absolute_change = after_value - before_value
@@ -134,6 +142,7 @@ def _clustering_comparison(before: nx.Graph, after: nx.Graph) -> dict[str, Any]:
 
 
 def _degree_change_summary(before: nx.Graph, after: nx.Graph) -> dict[str, Any]:
+    """Summarise how node degrees shift after rewiring."""
     changes = [after.degree(node) - before.degree(node) for node in before]
     absolute_changes = [abs(change) for change in changes]
     return {
@@ -148,6 +157,7 @@ def _degree_change_summary(before: nx.Graph, after: nx.Graph) -> dict[str, Any]:
 def _supplementary_comparison(
     before: nx.Graph, after: nx.Graph
 ) -> dict[str, Any]:
+    """Collect secondary indicators such as transitivity and components."""
     return {
         "transitivity_before": nx.transitivity(before),
         "transitivity_after": nx.transitivity(after),
@@ -183,6 +193,7 @@ def compare_graphs(before: nx.Graph, after: nx.Graph, top_k: int) -> dict[str, A
 
 
 def _uniqueness_table_rows(comparison: dict[str, Any]) -> list[tuple[str, Any, Any, Any]]:
+    """Format uniqueness rows for the human-readable comparison table."""
     unique = comparison["unique"]
     return [
         (
@@ -215,6 +226,7 @@ def _uniqueness_table_rows(comparison: dict[str, Any]) -> list[tuple[str, Any, A
 
 
 def _clustering_table_rows(comparison: dict[str, Any]) -> list[tuple[str, Any, Any, Any]]:
+    """Format clustering rows for the human-readable comparison table."""
     clustering = comparison["clustering"]
     return [
         (
@@ -233,6 +245,7 @@ def _clustering_table_rows(comparison: dict[str, Any]) -> list[tuple[str, Any, A
 
 
 def _ranking_table_rows(comparison: dict[str, Any]) -> list[tuple[str, Any, Any, Any]]:
+    """Format ranking rows for the human-readable comparison table."""
     ranking = comparison["ranking"]
     movement = ", ".join(
         f"{item['id']}:{item['movement']}"
@@ -250,6 +263,7 @@ def _ranking_table_rows(comparison: dict[str, Any]) -> list[tuple[str, Any, Any,
 def _supplementary_table_rows(
     comparison: dict[str, Any],
 ) -> list[tuple[str, Any, Any, Any]]:
+    """Format supplementary rows for the human-readable comparison table."""
     supplementary = comparison["supplementary"]
     return [
         (

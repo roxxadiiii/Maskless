@@ -12,6 +12,7 @@ from src.compare import comparison_table_rows
 
 
 def _format_cell(value: Any) -> str:
+    """Render a value for a four-decimal human-readable table cell."""
     if isinstance(value, float):
         return f"{value:.4f}"
     if value is None:
@@ -83,6 +84,7 @@ def render_robustness_markdown(robustness: dict[str, Any]) -> str:
 
 
 def _robustness_table_rows(robustness: dict[str, Any]) -> list[str]:
+    """Build Markdown rows for robustness distribution summaries."""
     labels = (
         ("unique_fraction_after", "Unique fraction after"),
         ("average_clustering_after", "Average clustering after"),
@@ -117,6 +119,7 @@ def _robustness_conclusion(
     clustering: dict[str, float],
     overlap: dict[str, float],
 ) -> str:
+    """Word conclusions using observed spread rather than causal claims."""
     return (
         f"Across these runs, the unique fraction "
         f"{_spread_word(uniqueness)} from {uniqueness['minimum']:.4f} "
@@ -148,6 +151,7 @@ def _spread_word(summary: dict[str, float]) -> str:
 def _plot_class_sizes(
     axis: Any, comparison: dict[str, Any], width: float
 ) -> None:
+    """Draw signature class-size counts before and after perturbation."""
     before = comparison["unique"]["before"]["class_size_histogram"]
     after = comparison["unique"]["after"]["class_size_histogram"]
     sizes = sorted(set(before) | set(after))
@@ -171,6 +175,7 @@ def _plot_class_sizes(
 
 
 def _plot_signatures(axis: Any, before: nx.Graph, after: nx.Graph) -> None:
+    """Draw a degree-versus-triangles scatter for both graphs."""
     before_degrees, after_degrees = dict(before.degree()), dict(after.degree())
     before_triangles, after_triangles = nx.triangles(before), nx.triangles(after)
     axis.scatter(
@@ -191,6 +196,7 @@ def _plot_signatures(axis: Any, before: nx.Graph, after: nx.Graph) -> None:
 
 
 def _plot_top_k(axis: Any, comparison: dict[str, Any], width: float) -> None:
+    """Draw a grouped bar chart of top-k degrees."""
     before, after = comparison["ranking"]["before"], comparison["ranking"]["after"]
     ranks = list(range(1, len(before) + 1))
     axis.bar(

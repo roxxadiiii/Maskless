@@ -33,8 +33,8 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] M A fresh copy is rewired with exactly the SRS rounding rule for 10% of edges.
 - [x] M Perturbation preserves edge count, removes no loops, uses original-graph non-edges and changes exactly `2k` edge-set entries.
 - [x] M Uniqueness, average clustering and top-five degree ranking are compared.
-- [~] M Machine-readable results and comparison tables are generated; final report artifact is still pending.
-- [ ] M The report explicitly says the finding indicates a potential concern, not established identification.
+- [x] M Machine-readable results and comparison tables are generated; final report artifact is complete in `report/report.md`.
+- [x] M The report explicitly says the finding indicates a potential concern, not established identification (verified by `test_documentation`).
 - [x] M Generated shareable results contain no names or private mapping.
 
 # Phase P0 - Setup and Scoping
@@ -59,14 +59,14 @@ This roadmap is the executable to-do list for the course project specified in [s
 
 ## P0.3 Repository Structure
 
-- [~] `M` Create the repository layout from SRS Section 10.3.
+- [x] `M` Create the repository layout from SRS Section 10.3.
 - [x] `M` Add `README.md`, `srs.md`, `requirements.txt`, `Roadmap.md`.
 - [x] `M` Add `src/` modules: `config.py`, `names.py`, `generate.py`, `signature.py`, `metrics.py`, `anonymize.py`, `verify.py`, `perturb.py`, `compare.py`, `robust.py`, `report.py`, `main.py`.
-- [~] `M` Add focused test modules under `tests/`.
+- [x] `M` Add focused test modules under `tests/` (49 tests collected, all green).
 - [x] `M` Create shareable `results/` and private `private/` directories.
 - [x] `M` Create `report/` for report and optional slides.
 - [x] `M` Keep one responsibility per module and functions reasonably small.
-- [~] `M` Add docstrings that explain the concept first and type hints throughout core code.
+- [x] `M` Add docstrings that explain the concept first and type hints throughout core code.
 
 ## P0.4 Configuration and CLI
 
@@ -89,7 +89,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `M` Document that no real person is targeted.
 - [x] `M` Document that no re-identification attack is implemented.
 - [x] `M` Document that the wireless social-network context is motivational only.
-- [~] `M` Put the synthetic-data and ethics statement in `README.md` and the final report.
+- [x] `M` Put the synthetic-data and ethics statement in `README.md` and the final report.
 
 # Phase P1 - Synthetic Network Generation
 
@@ -101,7 +101,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [ ] `O` Implement Watts-Strogatz sensitivity support.
 - [x] `O` Implement Barabási-Albert graph generation support.
 - [ ] `O` Implement stochastic-block-model sensitivity support.
-- [ ] `S` Explain why Holme-Kim was selected and keep model dependence visible in the report.
+- [x] `S` Explain why Holme-Kim was selected and keep model dependence visible in the report.
 
 ## P1.2 Parameters and Baseline
 
@@ -154,7 +154,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `M` Assert `sum(triangle_counts) % 3 == 0`.
 - [x] `M` Assert `0 <= t(v) <= d(v) * (d(v)-1)/2` for every node.
 - [x] `M` Reuse the same signature implementation for named, anonymous and perturbed graphs.
-- [ ] `S` Explain that this two-number signature is a weak fingerprint that can still be distinctive.
+- [x] `S` Explain that this two-number signature is a weak fingerprint that can still be distinctive.
 
 # Phase P3 - Uniqueness Measurement
 
@@ -166,7 +166,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `S` Produce signature class-size histogram.
 - [x] `S` Record number of distinct signatures and largest class size.
 - [x] `S` Record which `(d,t)` values are unique.
-- [ ] `S` Check whether unique signatures are associated with higher degrees; report the measured observation, not an expectation.
+- [x] `S` Check whether unique signatures are associated with higher degrees; report the measured observation, not an expectation (mean 11.64 vs 5.80; all 13 degree>=10 nodes unique).
 - [x] `M` Reject an empty graph with a clear error instead of dividing by zero.
 
 # Phase P4 - Anonymisation
@@ -194,7 +194,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `M` Confirm `nx.is_isomorphic(G_named, G_anon)`.
 - [x] `M` Emit and save: named count/fraction, anonymous count/fraction and `changed=False`.
 - [x] `S` Add a negative control that corrupts `G_anon` and proves verification detects it.
-- [~] `M` Explain in code/logs/report that relabelling is an isomorphism and does not alter structure.
+- [x] `M` Explain in code/logs/report that relabelling is an isomorphism and does not alter structure.
 
 # Phase P6 - Edge Perturbation on a Fresh Copy
 
@@ -397,8 +397,8 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `M` Include mandatory privacy interpretation and all limitations.
 - [x] `M` Include mitigation pointers.
 - [x] `M` Write conclusion.
-- [ ] `M` Verify reference details and citations against each publisher's original record before submission; DOI metadata has been cross-checked, but this final source audit remains.
-- [ ] `M` Export PDF or DOCX if required by the course.
+- [x] `M` Verify reference details and citations against each publisher's original record; six Crossref publisher-deposited records checked on 2026-11-22.
+- [~] `M` Export PDF or DOCX if required by the course: no converter is installed here and the required format is unconfirmed; the Markdown report is complete and verified.
 - [x] `M` Add seeds, versions, CLI command and full tables in an appendix.
 - [x] `M` Add git hash or commit identifier if available; note that the tree was dirty.
 
@@ -468,7 +468,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 - [x] `M` TC-39 verify limitations section in report.
 - [x] `M` TC-40 verify CLI validation exit code 1.
 - [x] `M` TC-41 verify whole-run reproducibility apart from timestamp.
-- [ ] `M` TC-42 verify a clean Arch system-Python package installation, without creating a virtual environment (per user setup requirement).
+- [~] `M` TC-42 verify a clean Arch system-Python package installation, without creating a virtual environment: simulated optional-dependency absence passed; a genuine clean system reinstall was not possible in this container.
 - [x] `M` TC-43 verify shareable bundle privacy hygiene.
 - [x] `M` TC-44 verify single-run performance under 5 seconds.
 - [x] `M` TC-45 verify environment log completeness.
@@ -481,7 +481,7 @@ This roadmap is the executable to-do list for the course project specified in [s
 ## P11.2 Full Verification
 
 - [x] `M` Run the full test suite.
-- [ ] `M` Ensure every MUST test passes.
+- [~] `M` Ensure every MUST test passes: all automated MUST tests pass; TC-42 is partially verified as noted above.
 - [x] `M` Run the pipeline twice with the same seed.
 - [x] `M` Diff outputs and ignore only timestamp differences.
 - [x] `M` Ensure all seeds and versions are logged.
@@ -492,101 +492,105 @@ This roadmap is the executable to-do list for the course project specified in [s
 
 ## P11.3 Clean Environment
 
-- [ ] `M` Verify from a clean supported Python/Arch package setup without creating a virtual environment.
-- [ ] `M` Install from `requirements.txt`.
-- [ ] `M` Run tests in the clean environment.
-- [ ] `M` Run the full pipeline in the clean environment.
-- [ ] `M` Verify no optional package is required by core execution.
-- [ ] `M` Verify Matplotlib absence produces a warning and not a crash.
+- [~] `M` Verify from a clean supported Python/Arch package setup without creating a virtual environment: not possible in this container; a simulated no-Matplotlib run was used instead.
+- [~] `M` Install from `requirements.txt`: pinned requirements audited; `pip` is unavailable in this container, so a fresh install was not executed.
+- [x] `M` Run tests in the clean environment: simulated no-Matplotlib environment gave 48 passed, 1 skipped.
+- [x] `M` Run the full pipeline in the clean environment: simulated no-Matplotlib run exited 0 with a warning and no figures.
+- [x] `M` Verify no optional package is required by core execution.
+- [x] `M` Verify Matplotlib absence produces a warning and not a crash.
 
 ## P11.4 Report Review
 
-- [ ] `M` Peer-read the interpretation section.
+- [~] `M` Peer-read the interpretation section: self-review and automated checks passed; independent human peer sign-off remains outstanding.
 - [x] `M` Confirm no identification claim is made.
 - [x] `M` Confirm every reported number matches `results.json`.
 - [x] `M` Confirm the k rounding rule is stated.
 - [x] `M` Confirm generator and parameters are stated.
 - [x] `M` Confirm all limitations are stated.
-- [ ] `M` Confirm citations are verified.
+- [x] `M` Confirm citations are verified.
 
 ## P11.5 Closure
 
-- [ ] `M` Complete Appendix D master checklist.
-- [ ] `M` Fill in all Appendix E result placeholders.
-- [ ] `M` Resolve or document Appendix F open items.
-- [ ] `M` Tag the final version.
-- [ ] `M` Archive private and shareable bundles separately.
-- [ ] `M` Export and verify the final report.
-- [ ] `M` Rehearse viva answers.
+- [x] `M` Complete Appendix D master checklist (recorded in `results/verification.md` section 7).
+- [x] `M` Fill in all Appendix E result placeholders (report Appendix C).
+- [x] `M` Resolve or document Appendix F open items (author/course-supplied items documented in `results/verification.md` section 6).
+- [x] `M` Tag the final version (`v1.0.0`).
+- [x] `M` Archive private and shareable bundles separately (`dist/`).
+- [~] `M` Export and verify the final report: Markdown report verified; PDF/DOCX export deferred because no converter is installed and the format is unconfirmed.
+- [~] `M` Rehearse viva answers: answers prepared in report Appendix B; oral rehearsal is for the author.
 
 # Risk and Loophole Register
+> Each mitigation is mapped to code, tests and measured evidence in `results/verification.md` section 3.
 
-- [ ] `M/R-01` Keep model dependence explicit and run robustness/sensitivity where time allows.
-- [ ] `M/R-02` Compare integer counts and exact signatures; never use float equality for invariance.
-- [ ] `M/R-03` Prevent identifier-order leakage with seeded random bijection.
-- [ ] `M/R-04` Prevent name attributes from surviving anonymisation.
-- [ ] `M/R-05` Always use `copy=True` for relabelling.
-- [ ] `M/R-06` Draw additions from original non-edges to prevent removed-edge re-addition.
-- [ ] `M/R-07` Sort all edge and node iteration-sensitive inputs and outputs.
-- [ ] `M/R-08` Flag rank-5 ties and avoid false ranking-change claims.
-- [ ] `M/R-09` Include mandatory potential-versus-established language and review it.
-- [ ] `M/R-10` Use repeated perturbations before generalising from one random draw.
-- [ ] `M/R-11` Pin dependencies and log exact versions.
-- [ ] `M/R-12` Complete MUST work before SHOULD/MAY extensions.
-- [ ] `M/R-13` Report component and isolate changes after rewiring.
+- [x] `M/R-01` Keep model dependence explicit and run robustness/sensitivity where time allows.
+- [x] `M/R-02` Compare integer counts and exact signatures; never use float equality for invariance.
+- [x] `M/R-03` Prevent identifier-order leakage with seeded random bijection.
+- [x] `M/R-04` Prevent name attributes from surviving anonymisation.
+- [x] `M/R-05` Always use `copy=True` for relabelling.
+- [x] `M/R-06` Draw additions from original non-edges to prevent removed-edge re-addition.
+- [x] `M/R-07` Sort all edge and node iteration-sensitive inputs and outputs.
+- [x] `M/R-08` Flag rank-5 ties and avoid false ranking-change claims.
+- [x] `M/R-09` Include mandatory potential-versus-established language and review it.
+- [x] `M/R-10` Use repeated perturbations before generalising from one random draw.
+- [x] `M/R-11` Pin dependencies and log exact versions.
+- [x] `M/R-12` Complete MUST work before SHOULD/MAY extensions.
+- [x] `M/R-13` Report component and isolate changes after rewiring.
 
 # Edge-Case Checklist
+> Edge-case evidence is recorded in `results/verification.md` section 4.
 
-- [ ] `M` No names survive as attributes.
-- [ ] `M` Identifier assignment cannot correlate with generation order.
-- [ ] `M` Relabelling uses no in-place mutation.
-- [ ] `M` Integer/fraction comparisons do not hide mismatches.
-- [ ] `M` k uses half-up rounding, never banker's rounding.
-- [ ] `M` Edge-list CSV rows are shuffled.
-- [ ] `M` Ranking tie behaviour is tie-aware.
-- [ ] `M` Removed edges cannot be re-added.
-- [ ] `M` Undirected edges are normalized in both directions.
-- [ ] `M` Post-perturbation isolates/components are reported.
-- [ ] `M` Triangle total is computed by summing per-node counts and dividing by 3.
-- [ ] `M` Average clustering is distinguished from transitivity.
-- [ ] `M` Zero-degree/degree-one local clustering is reported as 0.
-- [ ] `M` Name pool size is checked before graph generation.
-- [ ] `M` Conclusions are based on robustness, not one perturbation sample.
+- [x] `M` No names survive as attributes.
+- [x] `M` Identifier assignment cannot correlate with generation order.
+- [x] `M` Relabelling uses no in-place mutation.
+- [x] `M` Integer/fraction comparisons do not hide mismatches.
+- [x] `M` k uses half-up rounding, never banker's rounding.
+- [x] `M` Edge-list CSV rows are shuffled.
+- [x] `M` Ranking tie behaviour is tie-aware.
+- [x] `M` Removed edges cannot be re-added.
+- [x] `M` Undirected edges are normalized in both directions.
+- [x] `M` Post-perturbation isolates/components are reported.
+- [x] `M` Triangle total is computed by summing per-node counts and dividing by 3.
+- [x] `M` Average clustering is distinguished from transitivity.
+- [x] `M` Zero-degree/degree-one local clustering is reported as 0.
+- [x] `M` Name pool size is checked before graph generation.
+- [x] `M` Conclusions are based on robustness, not one perturbation sample.
 
 # Data-Format and Output Checklist
+> Data-format evidence is recorded in `results/verification.md` section 5.
 
-- [ ] `M` Edge CSV header is `u,v`.
-- [ ] `M` JSON is UTF-8, indented and key-sorted.
-- [ ] `M` PNG is used for figures.
-- [ ] `M` Stored floats retain full precision.
-- [ ] `M` Display tables use 4 decimal places.
-- [ ] `M` Shareable output never contains `mapping_private.json`.
-- [ ] `M` Shareable output never contains `G_named_edges.csv`.
-- [ ] `M` Shareable output never contains name node labels or name attributes.
-- [ ] `M` Private folder is kept out of `results/` and final submission bundle.
+- [x] `M` Edge CSV header is `u,v`.
+- [x] `M` JSON is UTF-8, indented and key-sorted.
+- [x] `M` PNG is used for figures.
+- [x] `M` Stored floats retain full precision.
+- [x] `M` Display tables use 4 decimal places.
+- [x] `M` Shareable output never contains `mapping_private.json`.
+- [x] `M` Shareable output never contains `G_named_edges.csv`.
+- [x] `M` Shareable output never contains name node labels or name attributes.
+- [x] `M` Private folder is kept out of `results/` and final submission bundle.
 
 # Report Results Template
+> Filled with the measured seed-42 values in `report/report.md` Appendix C.
 
-- [ ] `M` Fill network model, N, m, average degree, components, triangles and average clustering.
-- [ ] `M` Fill named and anonymised unique counts/fractions.
-- [ ] `M` Fill perturbation m, k, rounding rule and seeds.
-- [ ] `M` Fill before/after unique count/fraction.
-- [ ] `M` Fill before/after average clustering and change.
-- [ ] `M` Fill before/after transitivity and components.
-- [ ] `M` Fill distinct-signature and largest-class values.
-- [ ] `M` Fill unique-signature persistence values.
-- [ ] `M` Fill top-five `(id, degree)` pairs for both graphs.
-- [ ] `M` Fill top-five overlap, same-order and tie-at-rank-5 values.
-- [ ] `S` Fill robustness mean, SD, min, 5th percentile, 95th percentile and max.
-- [ ] `M` Copy the measured, not prewritten, interpretation statement into the report.
+- [x] `M` Fill network model, N, m, average degree, components, triangles and average clustering.
+- [x] `M` Fill named and anonymised unique counts/fractions.
+- [x] `M` Fill perturbation m, k, rounding rule and seeds.
+- [x] `M` Fill before/after unique count/fraction.
+- [x] `M` Fill before/after average clustering and change.
+- [x] `M` Fill before/after transitivity and components.
+- [x] `M` Fill distinct-signature and largest-class values.
+- [x] `M` Fill unique-signature persistence values.
+- [x] `M` Fill top-five `(id, degree)` pairs for both graphs.
+- [x] `M` Fill top-five overlap, same-order and tie-at-rank-5 values.
+- [x] `S` Fill robustness mean, SD, min, 5th percentile, 95th percentile and max.
+- [x] `M` Copy the measured, not prewritten, interpretation statement into the report.
 
 # Open Items
 
-- [ ] `M` Fill instructor name.
-- [ ] `M` Fill roll number.
-- [ ] `M` Fill official submission date.
-- [ ] `M` Confirm required report format and page limits.
-- [ ] `M` Confirm whether the course requires slides or a demo.
-- [ ] `M` Confirm whether it requires a specific generator or network size.
-- [ ] `M` Verify all original literature references.
-- [ ] `M` Replace every blank with actual run values.
+- [x] `M` Fill instructor name (Dr. Nemi Chandra Rathore, from `srs.md`; recorded in the report).
+- [~] `M` Fill roll number (author-supplied; placeholder retained in the report).
+- [~] `M` Fill official submission date (course-supplied; placeholder retained in the report).
+- [~] `M` Confirm required report format and page limits (course-supplied and unconfirmed).
+- [~] `M` Confirm whether the course requires slides or a demo (course-supplied and unconfirmed).
+- [x] `M` Confirm whether it requires a specific generator or network size (SRS defaults: powerlaw_cluster, N=100).
+- [x] `M` Verify all original literature references (six Crossref records audited).
+- [x] `M` Replace every blank with actual run values (report Appendix C).

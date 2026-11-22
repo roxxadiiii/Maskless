@@ -32,6 +32,7 @@ def anonymize_graph(
 
 
 def _contains_name(value: Any, names: set[str]) -> bool:
+    """Check recursively whether a value contains any original name."""
     if isinstance(value, str):
         return any(name in value for name in names)
     if isinstance(value, dict):

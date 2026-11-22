@@ -87,6 +87,7 @@ def _write_json(path: Path, payload: Any) -> None:
 
 
 def _run_generation(config: Config) -> tuple[nx.Graph, dict[str, Any], UniquenessStats]:
+    """Generate the named graph and compute baseline and uniqueness statistics."""
     logging.info("Starting P1 synthetic network generation.")
     graph = make_named_graph(config)
     baseline = baseline_stats(graph)
@@ -101,6 +102,7 @@ def _run_generation(config: Config) -> tuple[nx.Graph, dict[str, Any], Uniquenes
 def _run_anonymization(
     config: Config, named_graph: nx.Graph
 ) -> tuple[nx.Graph, dict[str, str], RelabelVerification, UniquenessStats]:
+    """Relabel the named graph and verify that structure is invariant."""
     logging.info("Starting P4 anonymisation.")
     anonymized, mapping = anonymize_graph(
         named_graph, random.Random(config.seeds["anon"])
@@ -130,6 +132,7 @@ def _run_anonymization(
 def _run_perturbation_and_comparison(
     config: Config, anonymized: nx.Graph
 ) -> tuple[PerturbationResult, dict[str, Any]]:
+    """Perturb a fresh anonymous copy and compare it with the source."""
     logging.info("Starting P6 edge perturbation.")
     perturbation = perturb_graph(
         anonymized,
@@ -151,6 +154,7 @@ def _run_perturbation_and_comparison(
 
 
 def _execute_pipeline(config: Config) -> PipelineResult:
+    """Run all phases in order and collect their in-memory results."""
     named_graph, baseline, named_uniqueness = _run_generation(config)
     anonymized, mapping, verification, anonymized_uniqueness = _run_anonymization(
         config, named_graph
@@ -187,12 +191,14 @@ def _execute_pipeline(config: Config) -> PipelineResult:
 
 
 def _shuffled_edges(graph: nx.Graph, seed: int) -> list[tuple[str, str]]:
+    """Return edges as sorted pairs in seeded shuffled order."""
     edges = [tuple(sorted(edge)) for edge in graph.edges()]
     random.Random(seed).shuffle(edges)
     return edges
 
 
 def _write_edge_csv(path: Path, edges: list[tuple[str, str]]) -> None:
+    """Write an edge list with the required u,v header."""
     with path.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.writer(stream)
         writer.writerow(("u", "v"))
@@ -200,6 +206,7 @@ def _write_edge_csv(path: Path, edges: list[tuple[str, str]]) -> None:
 
 
 def _write_private_outputs(config: Config, result: PipelineResult) -> None:
+    """Persist the named edge list and mapping to the private folder."""
     private_dir = Path("private")
     private_dir.mkdir(parents=True, exist_ok=True)
     _write_edge_csv(
@@ -210,6 +217,7 @@ def _write_private_outputs(config: Config, result: PipelineResult) -> None:
 
 
 def _uniqueness_output(result: PipelineResult) -> dict[str, Any]:
+    """Project uniqueness statistics into the shareable JSON shape."""
     named = result.named_uniqueness
     anonymized = result.anonymized_uniqueness
     return {
@@ -229,10 +237,12 @@ def _uniqueness_output(result: PipelineResult) -> dict[str, Any]:
 
 
 def _verification_output(verification: RelabelVerification) -> dict[str, Any]:
+    """Project relabelling evidence into the shareable JSON shape."""
     return asdict(verification) | {"passed": verification.passed}
 
 
 def _comparison_results(comparison: dict[str, Any]) -> dict[str, Any]:
+    """Project the comparison into the SRS results dictionary shape."""
     unique = comparison["unique"]
     ranking = comparison["ranking"]
     top_k = comparison["top_k"]
@@ -276,6 +286,7 @@ def _comparison_results(comparison: dict[str, Any]) -> dict[str, Any]:
 def _results_payload(
     config: Config, result: PipelineResult, timestamp: str
 ) -> dict[str, Any]:
+    """Assemble the complete results.json payload."""
     verification = result.verification
     return {
         "meta": {
@@ -328,6 +339,7 @@ def _results_payload(
 def _write_shareable_outputs(
     config: Config, result: PipelineResult, timestamp: str
 ) -> str:
+    """Write all shareable JSON, CSV, Markdown, and figure artifacts."""
     _write_edge_csv(
         config.out_dir / "G_anon_edges.csv",
         _shuffled_edges(result.anonymized_graph, config.seeds["anon"]),
@@ -367,6 +379,7 @@ def _write_shareable_outputs(
 
 
 def _print_summary(config: Config, result: PipelineResult, table: str) -> None:
+    """Print the relabelling verdict and the comparison table."""
     verification = result.verification
     print(
         "Unique fraction before = "
