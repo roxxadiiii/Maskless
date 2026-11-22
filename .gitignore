@@ -2,11 +2,11 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 
-private/*
-!private/.gitkeep
+# private/*
+# !private/.gitkeep
 
-results/*
-!results/.gitkeep
+# results/*
+# !results/.gitkeep
 
-report/*
-!report/.gitkeep
+# report/*
+# !report/.gitkeep

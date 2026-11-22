@@ -1,0 +1,24 @@
+{
+  "config": {
+    "m_attach": 3,
+    "master_seed": 42,
+    "model": "powerlaw_cluster",
+    "n": 100,
+    "no_plots": false,
+    "out_dir": "results",
+    "p_triad": 0.5,
+    "rewire_fraction": 0.1,
+    "robust_runs": 200,
+    "top_k": 5
+  },
+  "networkx": "3.7",
+  "python": "3.14.10",
+  "seeds": {
+    "anon": 44,
+    "master": 42,
+    "names": 43,
+    "perturb": 45,
+    "robust_base": 1042
+  },
+  "timestamp": "2026-11-22T06:26:58.162852+00:00"
+}

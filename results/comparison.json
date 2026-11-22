@@ -1,0 +1,756 @@
+{
+  "after_graph": "G_pert",
+  "before_graph": "G_anon",
+  "clustering": {
+    "absolute_change": -0.0793785777173549,
+    "after": 0.28051300418677916,
+    "before": 0.35989158190413406,
+    "definition": "mean of local coefficients, count_zeros=True",
+    "relative_change": -0.22056247411338264,
+    "relative_change_percent": -22.056247411338266
+  },
+  "ranking": {
+    "after": [
+      [
+        "U051",
+        30
+      ],
+      [
+        "U055",
+        20
+      ],
+      [
+        "U079",
+        19
+      ],
+      [
+        "U050",
+        17
+      ],
+      [
+        "U089",
+        15
+      ]
+    ],
+    "before": [
+      [
+        "U051",
+        33
+      ],
+      [
+        "U079",
+        23
+      ],
+      [
+        "U055",
+        20
+      ],
+      [
+        "U050",
+        17
+      ],
+      [
+        "U089",
+        17
+      ]
+    ],
+    "movement_convention": "positive means improved rank",
+    "overlap_count": 5,
+    "rank_movement": [
+      {
+        "after_rank": 29,
+        "before_rank": 24,
+        "id": "U001",
+        "movement": -5
+      },
+      {
+        "after_rank": 18,
+        "before_rank": 25,
+        "id": "U002",
+        "movement": 7
+      },
+      {
+        "after_rank": 70,
+        "before_rank": 63,
+        "id": "U003",
+        "movement": -7
+      },
+      {
+        "after_rank": 30,
+        "before_rank": 18,
+        "id": "U004",
+        "movement": -12
+      },
+      {
+        "after_rank": 71,
+        "before_rank": 64,
+        "id": "U005",
+        "movement": -7
+      },
+      {
+        "after_rank": 54,
+        "before_rank": 65,
+        "id": "U006",
+        "movement": 11
+      },
+      {
+        "after_rank": 96,
+        "before_rank": 66,
+        "id": "U007",
+        "movement": -30
+      },
+      {
+        "after_rank": 31,
+        "before_rank": 26,
+        "id": "U008",
+        "movement": -5
+      },
+      {
+        "after_rank": 55,
+        "before_rank": 43,
+        "id": "U009",
+        "movement": -12
+      },
+      {
+        "after_rank": 6,
+        "before_rank": 6,
+        "id": "U010",
+        "movement": 0
+      },
+      {
+        "after_rank": 72,
+        "before_rank": 44,
+        "id": "U011",
+        "movement": -28
+      },
+      {
+        "after_rank": 97,
+        "before_rank": 45,
+        "id": "U012",
+        "movement": -52
+      },
+      {
+        "after_rank": 98,
+        "before_rank": 67,
+        "id": "U013",
+        "movement": -31
+      },
+      {
+        "after_rank": 12,
+        "before_rank": 11,
+        "id": "U014",
+        "movement": -1
+      },
+      {
+        "after_rank": 73,
+        "before_rank": 68,
+        "id": "U015",
+        "movement": -5
+      },
+      {
+        "after_rank": 56,
+        "before_rank": 31,
+        "id": "U016",
+        "movement": -25
+      },
+      {
+        "after_rank": 74,
+        "before_rank": 69,
+        "id": "U017",
+        "movement": -5
+      },
+      {
+        "after_rank": 24,
+        "before_rank": 27,
+        "id": "U018",
+        "movement": 3
+      },
+      {
+        "after_rank": 75,
+        "before_rank": 70,
+        "id": "U019",
+        "movement": -5
+      },
+      {
+        "after_rank": 76,
+        "before_rank": 71,
+        "id": "U020",
+        "movement": -5
+      },
+      {
+        "after_rank": 25,
+        "before_rank": 32,
+        "id": "U021",
+        "movement": 7
+      },
+      {
+        "after_rank": 77,
+        "before_rank": 72,
+        "id": "U022",
+        "movement": -5
+      },
+      {
+        "after_rank": 19,
+        "before_rank": 19,
+        "id": "U023",
+        "movement": 0
+      },
+      {
+        "after_rank": 57,
+        "before_rank": 46,
+        "id": "U024",
+        "movement": -11
+      },
+      {
+        "after_rank": 32,
+        "before_rank": 33,
+        "id": "U025",
+        "movement": 1
+      },
+      {
+        "after_rank": 33,
+        "before_rank": 47,
+        "id": "U026",
+        "movement": 14
+      },
+      {
+        "after_rank": 78,
+        "before_rank": 73,
+        "id": "U027",
+        "movement": -5
+      },
+      {
+        "after_rank": 58,
+        "before_rank": 48,
+        "id": "U028",
+        "movement": -10
+      },
+      {
+        "after_rank": 34,
+        "before_rank": 34,
+        "id": "U029",
+        "movement": 0
+      },
+      {
+        "after_rank": 79,
+        "before_rank": 74,
+        "id": "U030",
+        "movement": -5
+      },
+      {
+        "after_rank": 80,
+        "before_rank": 75,
+        "id": "U031",
+        "movement": -5
+      },
+      {
+        "after_rank": 81,
+        "before_rank": 76,
+        "id": "U032",
+        "movement": -5
+      },
+      {
+        "after_rank": 82,
+        "before_rank": 77,
+        "id": "U033",
+        "movement": -5
+      },
+      {
+        "after_rank": 13,
+        "before_rank": 12,
+        "id": "U034",
+        "movement": -1
+      },
+      {
+        "after_rank": 59,
+        "before_rank": 49,
+        "id": "U035",
+        "movement": -10
+      },
+      {
+        "after_rank": 8,
+        "before_rank": 8,
+        "id": "U036",
+        "movement": 0
+      },
+      {
+        "after_rank": 60,
+        "before_rank": 78,
+        "id": "U037",
+        "movement": 18
+      },
+      {
+        "after_rank": 35,
+        "before_rank": 50,
+        "id": "U038",
+        "movement": 15
+      },
+      {
+        "after_rank": 61,
+        "before_rank": 51,
+        "id": "U039",
+        "movement": -10
+      },
+      {
+        "after_rank": 26,
+        "before_rank": 20,
+        "id": "U040",
+        "movement": -6
+      },
+      {
+        "after_rank": 7,
+        "before_rank": 7,
+        "id": "U041",
+        "movement": 0
+      },
+      {
+        "after_rank": 36,
+        "before_rank": 79,
+        "id": "U042",
+        "movement": 43
+      },
+      {
+        "after_rank": 83,
+        "before_rank": 80,
+        "id": "U043",
+        "movement": -3
+      },
+      {
+        "after_rank": 11,
+        "before_rank": 13,
+        "id": "U044",
+        "movement": 2
+      },
+      {
+        "after_rank": 37,
+        "before_rank": 35,
+        "id": "U045",
+        "movement": -2
+      },
+      {
+        "after_rank": 84,
+        "before_rank": 81,
+        "id": "U046",
+        "movement": -3
+      },
+      {
+        "after_rank": 27,
+        "before_rank": 28,
+        "id": "U047",
+        "movement": 1
+      },
+      {
+        "after_rank": 38,
+        "before_rank": 82,
+        "id": "U048",
+        "movement": 44
+      },
+      {
+        "after_rank": 39,
+        "before_rank": 83,
+        "id": "U049",
+        "movement": 44
+      },
+      {
+        "after_rank": 4,
+        "before_rank": 4,
+        "id": "U050",
+        "movement": 0
+      },
+      {
+        "after_rank": 1,
+        "before_rank": 1,
+        "id": "U051",
+        "movement": 0
+      },
+      {
+        "after_rank": 62,
+        "before_rank": 52,
+        "id": "U052",
+        "movement": -10
+      },
+      {
+        "after_rank": 40,
+        "before_rank": 53,
+        "id": "U053",
+        "movement": 13
+      },
+      {
+        "after_rank": 85,
+        "before_rank": 84,
+        "id": "U054",
+        "movement": -1
+      },
+      {
+        "after_rank": 2,
+        "before_rank": 3,
+        "id": "U055",
+        "movement": 1
+      },
+      {
+        "after_rank": 41,
+        "before_rank": 36,
+        "id": "U056",
+        "movement": -5
+      },
+      {
+        "after_rank": 42,
+        "before_rank": 37,
+        "id": "U057",
+        "movement": -5
+      },
+      {
+        "after_rank": 86,
+        "before_rank": 85,
+        "id": "U058",
+        "movement": -1
+      },
+      {
+        "after_rank": 87,
+        "before_rank": 54,
+        "id": "U059",
+        "movement": -33
+      },
+      {
+        "after_rank": 43,
+        "before_rank": 55,
+        "id": "U060",
+        "movement": 12
+      },
+      {
+        "after_rank": 88,
+        "before_rank": 86,
+        "id": "U061",
+        "movement": -2
+      },
+      {
+        "after_rank": 20,
+        "before_rank": 14,
+        "id": "U062",
+        "movement": -6
+      },
+      {
+        "after_rank": 28,
+        "before_rank": 87,
+        "id": "U063",
+        "movement": 59
+      },
+      {
+        "after_rank": 63,
+        "before_rank": 38,
+        "id": "U064",
+        "movement": -25
+      },
+      {
+        "after_rank": 44,
+        "before_rank": 39,
+        "id": "U065",
+        "movement": -5
+      },
+      {
+        "after_rank": 99,
+        "before_rank": 88,
+        "id": "U066",
+        "movement": -11
+      },
+      {
+        "after_rank": 9,
+        "before_rank": 9,
+        "id": "U067",
+        "movement": 0
+      },
+      {
+        "after_rank": 89,
+        "before_rank": 56,
+        "id": "U068",
+        "movement": -33
+      },
+      {
+        "after_rank": 64,
+        "before_rank": 57,
+        "id": "U069",
+        "movement": -7
+      },
+      {
+        "after_rank": 45,
+        "before_rank": 29,
+        "id": "U070",
+        "movement": -16
+      },
+      {
+        "after_rank": 46,
+        "before_rank": 40,
+        "id": "U071",
+        "movement": -6
+      },
+      {
+        "after_rank": 65,
+        "before_rank": 89,
+        "id": "U072",
+        "movement": 24
+      },
+      {
+        "after_rank": 47,
+        "before_rank": 58,
+        "id": "U073",
+        "movement": 11
+      },
+      {
+        "after_rank": 48,
+        "before_rank": 59,
+        "id": "U074",
+        "movement": 11
+      },
+      {
+        "after_rank": 49,
+        "before_rank": 30,
+        "id": "U075",
+        "movement": -19
+      },
+      {
+        "after_rank": 50,
+        "before_rank": 90,
+        "id": "U076",
+        "movement": 40
+      },
+      {
+        "after_rank": 100,
+        "before_rank": 60,
+        "id": "U077",
+        "movement": -40
+      },
+      {
+        "after_rank": 90,
+        "before_rank": 91,
+        "id": "U078",
+        "movement": 1
+      },
+      {
+        "after_rank": 3,
+        "before_rank": 2,
+        "id": "U079",
+        "movement": -1
+      },
+      {
+        "after_rank": 91,
+        "before_rank": 92,
+        "id": "U080",
+        "movement": 1
+      },
+      {
+        "after_rank": 92,
+        "before_rank": 93,
+        "id": "U081",
+        "movement": 1
+      },
+      {
+        "after_rank": 66,
+        "before_rank": 94,
+        "id": "U082",
+        "movement": 28
+      },
+      {
+        "after_rank": 93,
+        "before_rank": 95,
+        "id": "U083",
+        "movement": 2
+      },
+      {
+        "after_rank": 67,
+        "before_rank": 61,
+        "id": "U084",
+        "movement": -6
+      },
+      {
+        "after_rank": 16,
+        "before_rank": 16,
+        "id": "U085",
+        "movement": 0
+      },
+      {
+        "after_rank": 68,
+        "before_rank": 62,
+        "id": "U086",
+        "movement": -6
+      },
+      {
+        "after_rank": 10,
+        "before_rank": 10,
+        "id": "U087",
+        "movement": 0
+      },
+      {
+        "after_rank": 17,
+        "before_rank": 41,
+        "id": "U088",
+        "movement": 24
+      },
+      {
+        "after_rank": 5,
+        "before_rank": 5,
+        "id": "U089",
+        "movement": 0
+      },
+      {
+        "after_rank": 51,
+        "before_rank": 96,
+        "id": "U090",
+        "movement": 45
+      },
+      {
+        "after_rank": 14,
+        "before_rank": 17,
+        "id": "U091",
+        "movement": 3
+      },
+      {
+        "after_rank": 52,
+        "before_rank": 42,
+        "id": "U092",
+        "movement": -10
+      },
+      {
+        "after_rank": 21,
+        "before_rank": 21,
+        "id": "U093",
+        "movement": 0
+      },
+      {
+        "after_rank": 22,
+        "before_rank": 22,
+        "id": "U094",
+        "movement": 0
+      },
+      {
+        "after_rank": 53,
+        "before_rank": 97,
+        "id": "U095",
+        "movement": 44
+      },
+      {
+        "after_rank": 23,
+        "before_rank": 23,
+        "id": "U096",
+        "movement": 0
+      },
+      {
+        "after_rank": 15,
+        "before_rank": 15,
+        "id": "U097",
+        "movement": 0
+      },
+      {
+        "after_rank": 94,
+        "before_rank": 98,
+        "id": "U098",
+        "movement": 4
+      },
+      {
+        "after_rank": 95,
+        "before_rank": 99,
+        "id": "U099",
+        "movement": 4
+      },
+      {
+        "after_rank": 69,
+        "before_rank": 100,
+        "id": "U100",
+        "movement": 31
+      }
+    ],
+    "same_order": false,
+    "tie_at_k_after": false,
+    "tie_at_k_before": false,
+    "top_k_rank_movement": [
+      {
+        "after_rank": 4,
+        "before_rank": 4,
+        "id": "U050",
+        "movement": 0
+      },
+      {
+        "after_rank": 1,
+        "before_rank": 1,
+        "id": "U051",
+        "movement": 0
+      },
+      {
+        "after_rank": 2,
+        "before_rank": 3,
+        "id": "U055",
+        "movement": 1
+      },
+      {
+        "after_rank": 3,
+        "before_rank": 2,
+        "id": "U079",
+        "movement": -1
+      },
+      {
+        "after_rank": 5,
+        "before_rank": 5,
+        "id": "U089",
+        "movement": 0
+      }
+    ]
+  },
+  "supplementary": {
+    "components_after": 1,
+    "components_before": 1,
+    "degree_change_summary": {
+      "max_absolute_change": 4,
+      "mean_absolute_change": 0.7,
+      "nodes_decreased": 24,
+      "nodes_increased": 24,
+      "nodes_unchanged": 52
+    },
+    "isolates_after": 0,
+    "isolates_before": 0,
+    "transitivity_after": 0.15328467153284672,
+    "transitivity_before": 0.1805940594059406
+  },
+  "top_k": 5,
+  "unique": {
+    "after": {
+      "class_size_histogram": {
+        "1": 24,
+        "2": 4,
+        "3": 2,
+        "4": 2,
+        "5": 4,
+        "6": 2,
+        "7": 1,
+        "15": 1
+      },
+      "count": 24,
+      "distinct_signatures": 40,
+      "fraction": 0.24,
+      "largest_class_size": 15
+    },
+    "before": {
+      "class_size_histogram": {
+        "1": 25,
+        "2": 4,
+        "3": 4,
+        "4": 3,
+        "5": 1,
+        "7": 1,
+        "13": 1,
+        "18": 1
+      },
+      "count": 25,
+      "distinct_signatures": 40,
+      "fraction": 0.25,
+      "largest_class_size": 18
+    },
+    "changed_signature_count": 69,
+    "count_change": -1,
+    "fraction_change": -0.010000000000000009,
+    "originally_unique_count": 25,
+    "percentage_point_change": -1.0000000000000009,
+    "still_unique_count": 17,
+    "still_unique_fraction": 0.68,
+    "unchanged_signature_count": 3,
+    "unchanged_signature_fraction": 0.12
+  }
+}
