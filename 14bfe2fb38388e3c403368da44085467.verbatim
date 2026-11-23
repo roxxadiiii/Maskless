@@ -1,2 +1,0 @@
-python -m src.main --n 100 --model powerlaw_cluster --m 3 --p 0.5 \
-  --seed 42 --rewire 0.10 --topk 5 --robust-runs 200 --out results
